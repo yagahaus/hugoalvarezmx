@@ -1,0 +1,196 @@
+---
+/* src/pages/blog/index.astro */
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+// 1. Importamos la data real de tu CMS
+import blogSettings from '../../data/blog-settings.json';
+
+const blogTitle = blogSettings?.title || "Nuestro Blog";
+const blogDesc = blogSettings?.description || "Explora nuestras últimas noticias y artículos.";
+
+// Extraemos todos los posteos de la carpeta blog
+const posts = await getCollection('blog');
+
+// Los ordenamos por fecha (del más nuevo al más viejo)
+posts.sort((a: any, b: any) => {
+  const dateA = a.data.pubDate ? new Date(a.data.pubDate).valueOf() : 0;
+  const dateB = b.data.pubDate ? new Date(b.data.pubDate).valueOf() : 0;
+  return dateB - dateA;
+});
+
+// Extraemos las categorías únicas para armar el navegador
+const categories = [...new Set(posts.map((post: any) => post.data.category).filter(Boolean))];
+---
+
+<Layout title={blogTitle} description={blogDesc}>
+  
+  <div class="page-container" style="max-width: 1200px; margin: 7rem auto 5rem; padding: 0 1.5rem;">
+    
+    <header style="text-align: center; margin-bottom: 4rem;">
+      <h1 style="font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 1rem;">{blogTitle}</h1>
+      <p style="font-size: 1.1rem; opacity: 0.8; max-width: 600px; margin: 0 auto;">
+        {blogDesc}
+      </p>
+    </header>
+
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem;">
+      <button class="btn-principal filter-btn" data-filter="all">Todos</button>
+      
+      {categories.map((cat: any) => (
+        <button class="btn-outline filter-btn" data-filter={cat}>
+          {cat}
+        </button>
+      ))}
+    </div>
+
+    <div class="blog-grid" id="blogGrid">
+      {posts.map((post: any) => (
+        /* Le inyectamos la categoría como dato oculto (data-category) para que JS la lea */
+        <a href={`/blog/${post.id}`} class="blog-card fondo-default" data-category={post.data.category || 'Sin Categoría'}>
+          
+          <div class="card-image-wrapper">
+            {post.data.category && (
+              <span class="card-badge tag-mono">{post.data.category}</span>
+            )}
+            
+            {post.data.heroImage ? (
+              <img src={post.data.heroImage} alt={post.data.title} class="card-img" />
+            ) : (
+              <div class="card-placeholder fondo-acento"></div>
+            )}
+          </div>
+
+          <div class="card-content">
+            <h3>{post.data.title}</h3>
+            <p>{post.data.description}</p>
+            
+            <span class="leer-mas">Leer más &rarr;</span>
+          </div>
+
+        </a>
+      ))}
+    </div>
+
+  </div>
+</Layout>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.blog-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filterValue = btn.getAttribute('data-filter');
+
+      // 1. Quitar la clase 'principal' a todos y ponerles 'outline'
+      filterBtns.forEach(b => {
+        b.classList.remove('btn-principal');
+        b.classList.add('btn-outline');
+      });
+
+      // 2. Al botón clickeado, hacerlo 'principal'
+      btn.classList.remove('btn-outline');
+      btn.classList.add('btn-principal');
+
+      // 3. Filtrar las tarjetas suavemente
+      cards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        
+        if (filterValue === 'all' || filterValue === cardCategory) {
+          (card as HTMLElement).style.display = 'flex';
+          // Pequeño truco visual para que reaparezcan con gracia
+          setTimeout(() => (card as HTMLElement).style.opacity = '1', 10);
+        } else {
+          (card as HTMLElement).style.opacity = '0';
+          setTimeout(() => (card as HTMLElement).style.display = 'none', 300);
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2.5rem;
+  }
+
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-card, 24px);
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    /* Transición de opacidad para el filtro */
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+  }
+  .blog-card:hover {
+    transform: scale(1.03); 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+
+  .card-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden; 
+  }
+  .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease; 
+  }
+  .blog-card:hover .card-img {
+    transform: scale(1.08); 
+  }
+  .card-placeholder {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-badge {
+    position: absolute;
+    top: 1.25rem;
+    left: 1.25rem;
+    background-color: var(--color-acento2); 
+    color: var(--texto-color-acento2);      
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-capsule);
+    z-index: 10;
+  }
+
+  .card-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1; 
+  }
+  .card-content h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.4rem;
+  }
+  .card-content p {
+    opacity: 0.75;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    flex: 1; 
+  }
+
+  .leer-mas {
+    text-align: right;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--titulos-default-color); 
+    transition: transform 0.2s ease;
+  }
+  .blog-card:hover .leer-mas {
+    transform: translateX(5px); 
+  }
+</style>

@@ -1,0 +1,211 @@
+---
+/* src/pages/blog/[slug].astro */
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post: any) => ({
+    params: { slug: post.id }, 
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props as { post: any };
+const { Content } = await render(post);
+
+// --- MÓDULO DE AUTOR DINÁMICO LEYENDO TUS ARCHIVOS .MD ---
+const autoresFiles = import.meta.glob('../../data/autores/*.md', { eager: true });
+let autorData = null;
+
+if (post.data.author) {
+  for (const path in autoresFiles) {
+    const file = autoresFiles[path] as any;
+    if (file.frontmatter && file.frontmatter.name === post.data.author) {
+      autorData = file.frontmatter;
+      break;
+    }
+  }
+}
+
+// Formateador de fechas
+const formatDate = (date: Date) => {
+  if (!date) return "";
+  return new Intl.DateTimeFormat('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(date));
+};
+
+// SOPORTE TOTAL PARA LAS 7 REDES SOCIALES DEL FORMULARIO
+const getSocialSvg = (platform: string) => {
+  const p = platform.toLowerCase();
+  if (p.includes('facebook')) return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>';
+  if (p.includes('instagram')) return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>';
+  if (p.includes('tiktok')) return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>';
+  if (p.includes('spotify')) return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 11.5c2.5-1 5.5-1 8 0"/><path d="M9 14c2-.7 4-.7 6 0"/><path d="M7 9c3.5-1.5 6.5-1.5 10 0"/></svg>';
+  if (p.includes('linkedin')) return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>';
+  if (p.includes('x') || p.includes('twitter')) return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>';
+  if (p.includes('youtube')) return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="15" x="2" y="4.5" rx="4" ry="4"/><polygon points="10 9 15 12 10 15 10 9"/></svg>';
+  return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
+};
+---
+
+<Layout 
+  title={post.data.title} 
+  description={post.data.description} 
+  image={post.data.heroImage}
+>
+  
+  <div class="blog-post-container" style="max-width: 950px; margin: 3rem auto 6rem; padding: 0 1.5rem; display: flex; flex-direction: column; gap: 3.5rem;">
+    
+    <div class="post-hero-wrapper">
+      {post.data.heroImage && (
+        <div class="hero-aspect-ratio" style={`background-image: url('${post.data.heroImage}');`}>
+          <div class="hero-dark-gradient"></div>
+          
+          <div class="hero-text-overlay">
+            {post.data.category && (
+              <span class="btn-principal tag-mono" style="padding: 0.4rem 1.2rem; font-size: 0.75rem; pointer-events: none; margin-bottom: 1.5rem; align-self: flex-start; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                {post.data.category}
+              </span>
+            )}
+            <h1 class="hero-title">
+              {post.data.title}
+            </h1>
+          </div>
+        </div>
+      )}
+    </div>
+
+    <main class="content-block fondo-default" style="border-radius: var(--radius-card, 24px); box-shadow: 0 15px 40px rgba(0,0,0,0.04); padding: 4rem 3.5rem;">
+      <article class="contenido-cliente">
+        <Content />
+      </article>
+
+      {/* FECHA DE PUBLICACIÓN */}
+      {post.data.pubDate && (
+        <div style="margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid rgba(0,0,0,0.06); text-align: left;">
+          <p style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--texto-default-color); opacity: 0.6; margin: 0;">
+            Fecha de publicación: {formatDate(post.data.pubDate)}
+          </p>
+        </div>
+      )}
+    </main>
+
+    <div style="display: flex; justify-content: center; width: 100%;">
+      <a href="/blog" class="btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(180deg);">
+          <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+        <span>Volver al Blog</span>
+      </a>
+    </div>
+
+    {autorData && (
+      <section class="author-capsule fondo-default">
+        
+        {/* AVATAR (Aumentado a 120px) */}
+        <div class="author-avatar-container">
+          <img src={autorData.avatar || "/assets/images/autores/placeholder.jpg"} alt={autorData.name} class="author-avatar" />
+        </div>
+
+        {/* INFO DEL AUTOR */}
+        <div class="author-text-container">
+          <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--titulos-default-color);">
+            Publicado por
+          </span>
+          <h3 style="font-size: 1.35rem; margin: 0; color: var(--titulos-default-color);">
+            {autorData.name}
+          </h3>
+          <p style="font-size: 0.95rem; opacity: 0.8; margin: 0; color: var(--texto-default-color);">
+            {autorData.description}
+          </p>
+        </div>
+
+        {/* REDES SOCIALES DEL AUTOR */}
+        {autorData.redes && autorData.redes.length > 0 && (
+          <div class="author-socials-container">
+            {autorData.redes.map((redObj: any) => (
+              <a href={redObj.url} target="_blank" rel="noopener noreferrer" class="social-author-link" title={redObj.red} set:html={getSocialSvg(redObj.red)} />
+            ))}
+          </div>
+        )}
+
+      </section>
+    )}
+
+  </div>
+</Layout>
+
+<style>
+  /* PORTADA 16:9 */
+  .post-hero-wrapper {
+    width: 100%; border-radius: var(--radius-card, 24px); overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+  }
+  .hero-aspect-ratio {
+    width: 100%; padding-top: 56.25%; position: relative; background-size: cover; background-position: center; transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .post-hero-wrapper:hover .hero-aspect-ratio { transform: scale(1.04); }
+  .hero-dark-gradient {
+    position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0, 0, 0, 0.85) 100%); z-index: 1;
+  }
+  .hero-text-overlay {
+    position: absolute; bottom: 0; left: 0; width: 100%; padding: 3.5rem 3.5rem; z-index: 2; display: flex; flex-direction: column; transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .post-hero-wrapper:hover .hero-text-overlay { transform: scale(0.96); }
+  .hero-title {
+    color: #FFFFFF !important; font-size: clamp(1.8rem, 4vw, 2.8rem); text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); margin: 0; text-wrap: balance;
+  }
+
+  /* ESTRUCTURA BASE DEL MÓDULO DE AUTOR (DESKTOP) */
+  .author-capsule {
+    border-radius: var(--radius-card, 24px); 
+    box-shadow: 0 15px 40px rgba(0,0,0,0.04); 
+    padding: 2.5rem; 
+    display: flex; 
+    align-items: center; 
+    gap: 2rem;
+  }
+  .author-avatar-container {
+    width: 120px; /* Aumentado a 96px como pediste */
+    height: 120px; 
+    border-radius: 9999px; 
+    overflow: hidden; 
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
+    flex-shrink: 0;
+  }
+  .author-avatar { width: 100%; height: 100%; object-fit: cover; }
+  .author-text-container { flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+  .author-socials-container { display: flex; gap: 0.6rem; align-items: center; }
+
+  /* EFECTO BRINCO REDES SOCIALES AUTOR */
+  .social-author-link {
+    width: 40px; height: 40px; border-radius: var(--radius-sm, 8px); background-color: var(--default-color-similar); display: inline-flex; align-items: center; justify-content: center; color: var(--texto-default-color);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s, color 0.2s !important;
+  }
+  .social-author-link:hover {
+    transform: scale(1.1) translateY(-2px); background-color: var(--color-acento) !important; color: var(--texto-color-acento) !important;
+  }
+  .social-author-link :global(svg) { width: 18px; height: 18px; }
+  
+  /* ESTILOS INTERNOS MARKDOWN */
+  .contenido-cliente :global(p) { margin-bottom: 1.5rem; font-size: 1.1rem; opacity: 0.9; }
+  .contenido-cliente :global(h2), .contenido-cliente :global(h3) { margin-top: 2.5rem; margin-bottom: 1rem; }
+  .contenido-cliente :global(img) { border-radius: var(--radius-sm, 8px); margin: 2rem 0; width: 100%; }
+
+  /* RESPONSIVE: DETALLES DE COLAPSADO AL CENTRO PARA AUTOR */
+
+  @media (max-width: 768px) {
+    .author-capsule {
+      flex-direction: column;
+      text-align: center;
+      padding: 3rem 2rem;
+      gap: 1.5rem;
+    }
+    .author-text-container {
+      align-items: center;
+    }
+    .author-socials-container {
+      justify-content: center;
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,54 @@
+{
+  "title": "Dr. Roberto Mendieta | Pediatra",
+  "description": "Especialista en el cuidado integral de recién nacidos, niños y adolescentes. Atención médica con calidez, empatía y base científica.",
+  "keywords": "Av. de la Salud 123, Col. Centro, Tehuantepec, Oaxaca.",
+  "address": "Porfirio Diaz 10, Barrio Laborio, Santo Domingo Tehuantepec, Oaxaca.",
+  "email": "hola@drrobertomendieta.com",
+  "telefonos": [
+    {
+      "tipo": "Llamada",
+      "nombre": "Urgencias 24/7",
+      "numero": "529710000000"
+    },
+    {
+      "tipo": "WhatsApp",
+      "nombre": "Agendar Cita",
+      "numero": "529710000000"
+    },
+    {
+      "tipo": "Telegram",
+      "nombre": "Mensajes Telegram",
+      "numero": "529710000000"
+    }
+  ],
+  "redes": [
+    {
+      "red": "Facebook",
+      "url": "https://social.com/drrobertomendieta"
+    },
+    {
+      "red": "Instagram",
+      "url": "https://social.com/drrobertomendieta"
+    },
+    {
+      "red": "TikTok",
+      "url": "https://social.com/drrobertomendieta"
+    },
+    {
+      "red": "LinkedIn",
+      "url": "https://social.com/drrobertomendieta"
+    },
+    {
+      "red": "Spotify",
+      "url": "https://social.com/drrobertomendieta"
+    },
+    {
+      "red": "X",
+      "url": "https://social.com/drrobertomendieta"
+    },
+    {
+      "red": "YouTube",
+      "url": "https://social.com/drrobertomendieta"
+    }
+  ]
+}

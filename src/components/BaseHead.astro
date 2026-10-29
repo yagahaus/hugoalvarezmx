@@ -1,0 +1,47 @@
+---
+/* src/components/BaseHead.astro */
+import settings from '../data/settings.json';
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+}
+
+// Lógica de "Cascada" para SEO (El Fallback que planeaste)
+const {
+	title = settings.title,
+	description = settings.description,
+	image = '/og-image.jpg'
+} = Astro.props;
+
+// Si estamos en una página interna, ponemos "Página | Nombre del Sitio"
+const finalTitle = title === settings.title ? title : `${title} | ${settings.title}`;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<title>{finalTitle}</title>
+<meta name="title" content={finalTitle} />
+<meta name="description" content={description} />
+{settings.keywords && <meta name="keywords" content={settings.keywords} />}
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={finalTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={finalTitle} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, Astro.url)} />

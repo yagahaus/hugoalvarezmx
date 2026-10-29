@@ -1,0 +1,112 @@
+---
+/* src/pages/[slug].astro */
+import { getCollection, render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+// Obtenemos todas las entradas de la colección "paginas" (las que no son blog)
+export async function getStaticPaths() {
+  const paginas = await getCollection('paginas');
+  return paginas.map((pagina: any) => ({
+    params: { slug: pagina.id }, 
+    props: { pagina },
+  }));
+}
+
+const { pagina } = Astro.props as { pagina: any };
+const { Content } = await render(pagina);
+
+// Formateador de fechas (Solo actuará si le pasamos una fecha válida)
+const formatDate = (date: Date) => {
+  if (!date) return "";
+  return new Intl.DateTimeFormat('es-ES', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(date));
+};
+---
+
+<Layout 
+  title={pagina.data.title} 
+  description={pagina.data.description} 
+  image={pagina.data.heroImage}
+>
+  
+  <div class="page-container" style="max-width: 950px; margin: 3rem auto 6rem; padding: 0 1.5rem; display: flex; flex-direction: column; gap: 3.5rem;">
+    
+    <div class="post-hero-wrapper">
+      {pagina.data.heroImage && (
+        <div class="hero-aspect-ratio" style={`background-image: url('${pagina.data.heroImage}');`}>
+          <div class="hero-dark-gradient"></div>
+          
+          <div class="hero-text-overlay">
+            {/* Título en texto blanco con sombra, sin la categoría encima */}
+            <h1 class="hero-title">
+              {pagina.data.title}
+            </h1>
+          </div>
+        </div>
+      )}
+    </div>
+
+    <main class="content-block fondo-default" style="border-radius: var(--radius-card, 24px); box-shadow: 0 15px 40px rgba(0,0,0,0.04); padding: 4rem 3.5rem;">
+      <article class="contenido-cliente">
+        <Content />
+      </article>
+
+      {/* FECHA DE PUBLICACIÓN (100% Opcional: solo se muestra si el cliente llenó el campo) */}
+      {pagina.data.pubDate && (
+        <div style="margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid rgba(0,0,0,0.06); text-align: left;">
+          <p style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--texto-default-color); opacity: 0.6; margin: 0;">
+            Última actualización: {formatDate(pagina.data.pubDate)}
+          </p>
+        </div>
+      )}
+    </main>
+
+    <div style="display: flex; justify-content: center; width: 100%;">
+      <a href="/" class="btn-outline">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(180deg);">
+          <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+        <span>Volver al Inicio</span>
+      </a>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  /* === PORTADA 16:9 === */
+  .post-hero-wrapper {
+    width: 100%; border-radius: var(--radius-card, 24px); overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+  }
+  .hero-aspect-ratio {
+    width: 100%; padding-top: 56.25%; position: relative; background-size: cover; background-position: center; transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .post-hero-wrapper:hover .hero-aspect-ratio { transform: scale(1.04); }
+  
+  .hero-dark-gradient {
+    position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0, 0, 0, 0.85) 100%); z-index: 1;
+  }
+  .hero-text-overlay {
+    position: absolute; bottom: 0; left: 0; width: 100%; padding: 3.5rem 3.5rem; z-index: 2; display: flex; flex-direction: column; transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .post-hero-wrapper:hover .hero-text-overlay { transform: scale(0.96); }
+  
+  .hero-title {
+    color: #FFFFFF !important; font-size: clamp(1.8rem, 4vw, 2.8rem); text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); margin: 0; text-wrap: balance;
+  }
+
+  /* === ESTILOS INTERNOS DEL MARKDOWN === */
+  .contenido-cliente :global(p) { margin-bottom: 1.5rem; font-size: 1.1rem; opacity: 0.9; }
+  .contenido-cliente :global(h2), .contenido-cliente :global(h3) { margin-top: 2.5rem; margin-bottom: 1rem; color: var(--titulos-default-color); }
+  .contenido-cliente :global(img) { border-radius: var(--radius-sm, 8px); margin: 2rem 0; width: 100%; }
+  
+  /* Ajuste de listas para que se vean bien dentro del contenido */
+  .contenido-cliente :global(ul), .contenido-cliente :global(ol) {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+  .contenido-cliente :global(li) {
+    margin-bottom: 0.5rem;
+  }
+</style>

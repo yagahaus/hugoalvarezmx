@@ -1,0 +1,117 @@
+---
+/* src/components/Cta.astro */
+import destacadoData from '../data/destacado.json';
+
+// Leemos el nuevo archivo JSON
+const title = destacadoData?.title || "Destacado";
+const description = destacadoData?.description || "";
+const botones = destacadoData?.botones || [];
+const image = destacadoData?.image || null;
+---
+
+<section class="cta-module">
+  <div class="cta-image-half">
+    {image ? (
+      <img src={image} alt={title} class="cta-img" />
+    ) : (
+      <div class="cta-placeholder fondo-acento"></div>
+    )}
+  </div>
+
+  <div class="cta-content-half fondo-acento">
+    <h2 class="cta-title">{title}</h2>
+    
+    {description && (
+      <p class="cta-desc">{description}</p>
+    )}
+    
+    {botones && botones.length > 0 && (
+      <div class="cta-buttons">
+        {botones.map((btn: any) => (
+          <a href={btn.url} class="btn-outline">
+            <span>{btn.texto}</span>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .cta-module {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 50% - 50% */
+    border-radius: var(--radius-card, 24px);
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+    width: 100%;
+    min-height: 60vh;
+  }
+
+  /* --- MITAD DE LA IMAGEN --- */
+  .cta-image-half {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .cta-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  /* Efecto Zoom in en la foto al hacer hover en TODO el módulo */
+  .cta-module:hover .cta-img {
+    transform: scale(1.05);
+  }
+  .cta-placeholder {
+    width: 100%;
+    height: 100%;
+    opacity: 0.5; /* Si no hay foto, se ve un tono del color acento pero más suave */
+  }
+
+  /* --- MITAD DEL CONTENIDO --- */
+  .cta-content-half {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 4.5rem;
+  }
+  .cta-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  .cta-desc {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+    max-width: 500px;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* RESPONSIVE: En móviles se apila */
+  @media (max-width: 900px) {
+    .cta-module {
+      grid-template-columns: 1fr;
+      min-height: auto;
+    }
+    .cta-image-half {
+      height: 350px; /* Altura fija en móvil para la foto */
+    }
+    .cta-content-half {
+      padding: 3.5rem 2rem;
+      text-align: center;
+      align-items: center;
+    }
+    .cta-buttons {
+      justify-content: center;
+    }
+  }
+</style>

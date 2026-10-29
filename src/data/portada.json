@@ -1,0 +1,11 @@
+{
+  "title": "Cuidados para tu pequeño",
+  "description": "Atención pediátrica integral desde los primeros días de vida hasta la adolescencia. Tu tranquilidad y el sano desarrollo de tus pequeños son mi máxima prioridad.",
+  "image": "/assets/images/Arzt.jpg",
+  "botones": [
+    {
+      "texto": "Conocer Servicios",
+      "url": "/sobre-mi"
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+backend:
+  name: github
+  repo: cesarleyto/template
+  branch: main
+
+# Carpeta de imágenes por default
+media_folder: "public/assets/images"
+public_folder: "/assets/images"
+
+locale: es
+logo_url: "/assets/logo/logocms.svg"
+
+collections:
+  # ==========================================
+  # 1. AJUSTES GLOBALES (Settings, Nav, Portada, Destacado)
+  # ==========================================
+  - name: "configuracion"
+    label: "⚙️ Ajustes"
+    editor:
+      preview: false
+    files:
+      - label: "Datos Generales"
+        name: "general"
+        file: "src/data/settings.json"
+        fields:
+          - { label: "Título del Proyecto", name: "title", widget: "string" }
+          - { label: "Descripción SEO", name: "description", widget: "text", default: "Bienvenido al template inicial de yaga.haus" }
+          - { label: "Palabras Clave", name: "keywords", widget: "string", required: false }
+          - { label: "Dirección (Google Maps)", name: "address", widget: "string", required: false }
+          - { label: "Email de Contacto", name: "email", widget: "string", required: false }
+          - label: "Canales de Contacto Directo"
+            name: "telefonos"
+            widget: "list"
+            fields:
+              - { label: "Tipo de Contacto", name: "tipo", widget: "select", options: ["Llamada", "WhatsApp", "Telegram"] }
+              - { label: "Texto del Botón", name: "nombre", widget: "string", hint: "Ej: WhatsApp Urgencias, o Llamar a Recepción" }
+              - { label: "Número (Sin espacios)", name: "numero", widget: "string", hint: "Con clave de país, México (52). Ej: 529711045697" }
+          - label: "Redes Sociales"
+            name: "redes"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Red", name: "red", widget: "select", options: ["Facebook", "Instagram", "TikTok", "Spotify", "LinkedIn", "X", "YouTube"] }
+              - { label: "URL de la cuenta", name: "url", widget: "string" }
+
+      - label: "Navegación (Menú)"
+        name: "nav"
+        file: "src/data/nav.json"
+        fields:
+          - { label: "Mostrar Redes Sociales en menú", name: "showSocials", widget: "boolean", default: true }
+          - label: "Enlaces Simples"
+            name: "enlaces"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Texto", name: "texto", widget: "string" }
+              - { label: "URL (Ej: /sobre-nosotros)", name: "url", widget: "string" }
+          - label: "Botones Principales"
+            name: "botones"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Texto del Botón", name: "texto", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+
+      - label: "Portada (Home)"
+        name: "portada"
+        file: "src/data/portada.json"
+        fields:
+          - { label: "Título Principal", name: "title", widget: "string" }
+          - { label: "Descripción", name: "description", widget: "text", required: false }
+          - { label: "Imagen de Portada", name: "image", widget: "image", required: false }
+          - label: "Botones de Portada"
+            name: "botones"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Texto", name: "texto", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+
+      - label: "Sección Destacada"
+        name: "destacado"
+        file: "src/data/destacado.json"
+        fields:
+          - { label: "Título Destacado", name: "title", widget: "string" }
+          - { label: "Descripción", name: "description", widget: "text", required: false }
+          - { label: "Imagen Destacada", name: "image", widget: "image", required: false }
+          - label: "Botones de Destacado"
+            name: "botones"
+            widget: "list"
+            required: false
+            fields:
+              - { label: "Texto", name: "texto", widget: "string" }
+              - { label: "URL", name: "url", widget: "string" }
+
+      - label: "Ajustes del Blog"
+        name: "blog_settings"
+        file: "src/data/blog-settings.json"
+        fields:
+          - { label: "Nombre del Blog", name: "title", widget: "string", default: "Nuestro Blog" }
+          - { label: "Descripción del Blog", name: "description", widget: "text" }
+
+  # ==========================================
+  # 2. SISTEMA RELACIONAL (Categorías y Autores)
+  # ==========================================
+  - name: "categorias"
+    label: "🏷️ Categorías del Blog"
+    folder: "src/data/categorias"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "title"
+    fields:
+      - { label: "Nombre de Categoría", name: "title", widget: "string" }
+
+  - name: "autores"
+    label: "👥 Perfiles de Autor"
+    folder: "src/data/autores"
+    media_folder: "/public/assets/images/autores"
+    public_folder: "/assets/images/autores"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: "name"
+    fields:
+      - { label: "Nombre del Autor", name: "name", widget: "string" }
+      - { label: "Descripción Profesional", name: "description", widget: "string" }
+      - { label: "Avatar / Foto", name: "avatar", widget: "image", required: false }
+      - label: "Redes Sociales del Autor"
+        name: "redes"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Red", name: "red", widget: "select", options: ["Facebook", "Instagram", "TikTok", "Spotify", "LinkedIn", "X", "YouTube"] }
+          - { label: "URL", name: "url", widget: "string" }
+
+  # ==========================================
+  # 3. CONSTRUCTORES DE CONTENIDO (Páginas y Blog)
+  # ==========================================
+  - name: "paginas"
+    label: "📄 Páginas"
+    folder: "src/content/paginas"
+    media_folder: "/public/assets/images/paginas"
+    public_folder: "/assets/images/paginas"
+    create: true
+    slug: "{{fields.slug}}"
+    fields:
+      - { label: "Título de la Página", name: "title", widget: "string" }
+      - label: "Enlace de la página (URL)"
+        name: "slug"
+        widget: "string"
+        pattern: ['^[a-z0-9-]+$', "Error: Solo usa minúsculas, números y guiones medio. Sin espacios ni acentos."]
+        hint: "Ej: sobre-nosotros. Este será el link. Para ponerlo en tu Menú de Navegación escribirás: /sobre-nosotros"
+      - { label: "Descripción SEO (Obligatoria)", name: "description", widget: "text" }
+      - { label: "Fecha de publicación (Obligatoria)", name: "pubDate", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: true }
+      - { label: "Imagen de Portada (Opcional)", name: "heroImage", widget: "image", required: false }
+      - { label: "Contenido", name: "body", widget: "markdown" }
+
+  - name: "blog"
+    label: "📝 Entradas de Blog"
+    folder: "src/content/blog"
+    media_folder: "/public/assets/images/blog"
+    public_folder: "/assets/images/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Título del post", name: "title", widget: "string" }
+      - { label: "Descripción SEO (Obligatoria)", name: "description", widget: "text" }
+      - { label: "Autor", name: "author", widget: "relation", collection: "autores", search_fields: ["name"], value_field: "name", display_fields: ["name"], required: false }
+      - { label: "Categoría", name: "category", widget: "relation", collection: "categorias", search_fields: ["title"], value_field: "title", display_fields: ["title"] }
+      - { label: "Fecha de publicación", name: "pubDate", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Imagen de Portada (Opcional)", name: "heroImage", widget: "image", required: false }
+      - { label: "Contenido del Post", name: "body", widget: "markdown" }

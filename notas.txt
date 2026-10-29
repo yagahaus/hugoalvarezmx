@@ -1,0 +1,16 @@
+  /* --- COLORES BASE --- */
+  --default-color: #FFFFFF;
+  --default-color-similar: #F4F4F4;
+  
+  --color-acento: #6C61FF;
+  --color-acento2: #FFE164;
+
+  /* --- TÍTULOS --- */
+  --titulos-default-color: #6C61FF;
+  --titulos-color-acento: #FFFFFF;
+  --titulos-color-acento2: #000000;
+
+  /* --- TEXTOS --- */
+  --texto-default-color: #000000;
+  --texto-color-acento: #FFFFFF;
+  --texto-color-acento2: #000000;

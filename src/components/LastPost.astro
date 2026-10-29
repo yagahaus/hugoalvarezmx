@@ -1,0 +1,142 @@
+---
+/* src/components/LastPost.astro */
+import { getCollection } from 'astro:content';
+
+// Traer posteos y ordenarlos
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort((a: any, b: any) => {
+  const dateA = a.data.pubDate ? new Date(a.data.pubDate).valueOf() : 0;
+  const dateB = b.data.pubDate ? new Date(b.data.pubDate).valueOf() : 0;
+  return dateB - dateA;
+});
+
+// Cortar solo los últimos 3
+const last3Posts = sortedPosts.slice(0, 3);
+---
+
+<section class="last-posts-section">
+  <div class="blog-grid">
+    {last3Posts.map((post: any) => (
+      <a href={`/blog/${post.id}`} class="blog-card fondo-default">
+        
+        <div class="card-image-wrapper">
+          {post.data.category && (
+            <span class="card-badge tag-mono">{post.data.category}</span>
+          )}
+          
+          {post.data.heroImage ? (
+            <img src={post.data.heroImage} alt={post.data.title} class="card-img" />
+          ) : (
+            <div class="card-placeholder fondo-acento"></div>
+          )}
+        </div>
+
+        <div class="card-content">
+          <h3>{post.data.title}</h3>
+          <p>{post.data.description}</p>
+          
+          <span class="leer-mas">Leer más &rarr;</span>
+        </div>
+
+      </a>
+    ))}
+  </div>
+
+  <div style="display: flex; justify-content: center; margin-top: 4rem;">
+    <a href="/blog" class="btn-outline">
+      <span>Ir al Blog</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 18px; height: 18px;">
+        <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </a>
+  </div>
+
+</section>
+
+<style>
+  .last-posts-section {
+    width: 100%;
+  }
+
+  /* IDÉNTICO AL INDEX DEL BLOG */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2.5rem;
+  }
+
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-card, 24px);
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  }
+  .blog-card:hover {
+    transform: scale(1.03); 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  }
+
+  .card-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    overflow: hidden; 
+  }
+  .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease; 
+  }
+  .blog-card:hover .card-img {
+    transform: scale(1.08); 
+  }
+  .card-placeholder {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-badge {
+    position: absolute;
+    top: 1.25rem;
+    left: 1.25rem;
+    background-color: var(--color-acento2); 
+    color: var(--texto-color-acento2);      
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius-capsule);
+    z-index: 10;
+  }
+
+  .card-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1; 
+  }
+  .card-content h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.4rem;
+  }
+  .card-content p {
+    opacity: 0.75;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    flex: 1; 
+  }
+
+  .leer-mas {
+    text-align: right;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--titulos-default-color); 
+    transition: transform 0.2s ease;
+  }
+  .blog-card:hover .leer-mas {
+    transform: translateX(5px); 
+  }
+</style>

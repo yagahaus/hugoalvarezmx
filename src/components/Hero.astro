@@ -1,0 +1,120 @@
+---
+/* src/components/Hero.astro */
+import portadaData from '../data/portada.json';
+
+const title = portadaData?.title || "Bienvenidos";
+const description = portadaData?.description || "";
+const botones = portadaData?.botones || [];
+const heroImage = portadaData?.image || null;
+---
+
+<section class="hero-fullscreen">
+  <div class="hero-image-half">
+    {heroImage ? (
+      <img src={heroImage} alt={title} class="hero-img" />
+    ) : (
+      <div class="hero-placeholder"></div>
+    )}
+  </div>
+
+  <div class="hero-content-half fondo-acento">
+    <h1 class="hero-title">{title}</h1>
+    
+    {description && (
+      <p class="hero-desc">{description}</p>
+    )}
+    
+    {botones && botones.length > 0 && (
+      <div class="hero-buttons">
+        {botones.map((btn: any) => (
+          <a href={btn.url} class="btn-outline">
+            <span>{btn.texto}</span>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  /* EL SECRETO: 100% de ancho y 100vh (toda la altura de tu monitor) */
+  .hero-fullscreen {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 50% - 50% exacto */
+    margin-top: -6rem; /* Truco: Absorbe el espacio del header flotante para que empiece desde el borde superior de la pantalla */
+  }
+
+  /* --- MITAD DE LA IMAGEN --- */
+  .hero-image-half {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  /* Efecto Zoom in en la foto al hacer hover en TODO el módulo */
+  .hero-fullscreen:hover .hero-img {
+    transform: scale(1.05);
+  }
+  .hero-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: var(--default-color-similar);
+  }
+
+  /* --- MITAD DEL CONTENIDO --- */
+  .hero-content-half {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Mucho espacio interior (padding) para que el texto respire y no toque los bordes de la pantalla */
+    padding: 10rem 12% 6rem 12%;
+  }
+  .hero-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  .hero-desc {
+    font-size: 1.15rem;
+    opacity: 0.9;
+    margin-bottom: 3rem;
+    max-width: 550px;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* --- RESPONSIVE MOBILE --- */
+  @media (max-width: 900px) {
+    .hero-fullscreen {
+      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-image-half {
+      height: 50vh; /* La foto ocupa exactamente la mitad del celular */
+      width: 100%;
+      flex-shrink: 0;
+    }
+    .hero-content-half {
+      flex: 1; /* El texto rellena el resto de la pantalla */
+      padding: 4rem 2rem;
+      align-items: center;
+      text-align: center;
+    }
+    .hero-buttons {
+      justify-content: center;
+    }
+  }
+</style>
