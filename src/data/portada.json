@@ -1,11 +1,11 @@
 {
-  "title": "Cuidados para tu pequeño",
-  "description": "Atención pediátrica integral desde los primeros días de vida hasta la adolescencia. Tu tranquilidad y el sano desarrollo de tus pequeños son mi máxima prioridad.",
-  "image": "/assets/images/Arzt.jpg",
+  "title": "Construimos con Amor por Salina Cruz.",
+  "description": "Soy Hugo Álvarez Carbajal. Como empresario, constructor y vecino de este puerto, creo firmemente en la cultura del esfuerzo, en hacer las cosas bien hechas y en el valor de escuchar a nuestra gente. Conoce lo que me define y las causas que respaldo de corazón.",
+  "image": "/assets/images/hugoalvarez-salinacruz.jpg",
   "botones": [
     {
-      "texto": "Conocer Servicios",
-      "url": "/sobre-mi"
+      "texto": "Lee mi manifiesto",
+      "url": "/manifiesto"
     }
   ]
 }

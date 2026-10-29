@@ -1,54 +1,32 @@
 {
-  "title": "Dr. Roberto Mendieta | Pediatra",
-  "description": "Especialista en el cuidado integral de recién nacidos, niños y adolescentes. Atención médica con calidez, empatía y base científica.",
-  "keywords": "Av. de la Salud 123, Col. Centro, Tehuantepec, Oaxaca.",
-  "address": "Porfirio Diaz 10, Barrio Laborio, Santo Domingo Tehuantepec, Oaxaca.",
-  "email": "hola@drrobertomendieta.com",
+  "title": "Ing. Hugo Álvarez Carbajal | Constructor y Ciudadano de Salina Cruz",
+  "description": "Conoce a Hugo Álvarez Carbajal, empresario y constructor comprometido con Salina Cruz. Descubre su visión ciudadana, cultura del esfuerzo y amor por el puerto.",
+  "keywords": "Hugo Álvarez Carbajal, Salina Cruz, empresario Salina Cruz, constructor Oaxaca, altruismo Salina Cruz, participación ciudadana, desarrollo local, Hugo Fest.",
+  "address": "",
+  "email": "",
   "telefonos": [
     {
-      "tipo": "Llamada",
-      "nombre": "Urgencias 24/7",
-      "numero": "529710000000"
-    },
-    {
       "tipo": "WhatsApp",
-      "nombre": "Agendar Cita",
-      "numero": "529710000000"
-    },
-    {
-      "tipo": "Telegram",
-      "nombre": "Mensajes Telegram",
-      "numero": "529710000000"
+      "nombre": "WhatsApp: 971 220 6422",
+      "numero": "529712206422"
     }
   ],
   "redes": [
     {
       "red": "Facebook",
-      "url": "https://social.com/drrobertomendieta"
+      "url": "https://www.facebook.com/hugoalvarez.mx"
     },
     {
       "red": "Instagram",
-      "url": "https://social.com/drrobertomendieta"
+      "url": "https://www.instagram.com/hugoalvarez.mx"
     },
     {
       "red": "TikTok",
-      "url": "https://social.com/drrobertomendieta"
-    },
-    {
-      "red": "LinkedIn",
-      "url": "https://social.com/drrobertomendieta"
-    },
-    {
-      "red": "Spotify",
-      "url": "https://social.com/drrobertomendieta"
-    },
-    {
-      "red": "X",
-      "url": "https://social.com/drrobertomendieta"
+      "url": "https://www.tiktok.com/@hugoalvarez.mx"
     },
     {
       "red": "YouTube",
-      "url": "https://social.com/drrobertomendieta"
+      "url": "https://www.youtube.com/@hugoalvarezmx"
     }
   ]
 }

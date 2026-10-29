@@ -1,0 +1,71 @@
+---
+// src/pages/404.astro
+// Componente 404 universal con redirección inmediata a la raíz
+---
+
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirigiendo...</title>
+  
+  <!-- Magia 1: Redirección HTML en 0 segundos a la raíz absoluta ( / ) -->
+  <meta http-equiv="refresh" content="0;url=/" />
+  
+  <style>
+    /* Estilos encapsulados: limpios, neutrales y sin dependencias */
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: #f8fafc; /* Gris muy claro, aspecto clínico */
+      color: #334155;
+      text-align: center;
+    }
+    
+    /* Pequeña animación por si el servidor tarda un milisegundo en redireccionar */
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #e2e8f0;
+      border-top: 4px solid #0284c7; /* Azul profesional médico */
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0;
+    }
+    
+    p {
+      color: #64748b;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="spinner"></div>
+  <h1>Página no encontrada</h1>
+  <p>Llevándote al inicio...</p>
+
+  <!-- Magia 2: Redirección JS de respaldo. 'replace' evita que el usuario regrese al error si le da al botón "Atrás" -->
+  <script>
+    window.location.replace('/');
+  </script>
+
+</body>
+</html>

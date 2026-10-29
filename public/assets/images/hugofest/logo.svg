@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 257.2 72.6">
+  <!-- Generator: Adobe Illustrator 29.2.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 116)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: url(#Degradado_sin_nombre_423);
+      }
+
+      .st1 {
+        fill: url(#Degradado_sin_nombre_422);
+      }
+
+      .st2 {
+        fill: url(#Degradado_sin_nombre_421);
+      }
+
+      .st3 {
+        fill: url(#Degradado_sin_nombre_42);
+      }
+    </style>
+    <linearGradient id="Degradado_sin_nombre_42" data-name="Degradado sin nombre 42" x1="101.9" y1="48.3" x2="101.9" y2=".8" gradientUnits="userSpaceOnUse">
+      <stop offset=".7" stop-color="#fd7f03"/>
+      <stop offset="1" stop-color="#fcb705"/>
+    </linearGradient>
+    <linearGradient id="Degradado_sin_nombre_421" data-name="Degradado sin nombre 42" x1="163.5" x2="163.5" y2=".2" xlink:href="#Degradado_sin_nombre_42"/>
+    <linearGradient id="Degradado_sin_nombre_422" data-name="Degradado sin nombre 42" x1="227.9" x2="227.9" y2=".2" xlink:href="#Degradado_sin_nombre_42"/>
+    <linearGradient id="Degradado_sin_nombre_423" data-name="Degradado sin nombre 42" x1="33.9" y1="47" x2="33.9" y2=".2" xlink:href="#Degradado_sin_nombre_42"/>
+  </defs>
+  <path class="st3" d="M128.6,26.9V.8h-15.4v26.1c0,5.4-3.6,9.2-11.4,9.2s-11.4-3.7-11.4-9.2V.8h-15.4v26.1c0,14.3,8.9,21.4,26.8,21.4s26.7-7.1,26.7-21.4Z"/>
+  <path class="st2" d="M177.1,35.6c-3,.3-6.6.5-9,.5-11,0-16.4-4.4-16.4-11.8s5.2-11.8,17-11.8,14,.9,19.3,2.3V2.2c-4.8-1.2-10.9-2-17.8-2-23.7,0-34.3,9.6-34.3,24.1s10.5,24.1,33.1,24.1,17.2-1.1,22-2.3v-24.2h-14v13.8Z"/>
+  <path class="st1" d="M258.1,24.3c0-14.4-10.1-24.1-30.2-24.1s-30.2,9.6-30.2,24.1,10.2,24.1,30.2,24.1,30.2-9.6,30.2-24.1ZM227.9,36.1c-9.3,0-14.5-4.4-14.5-11.8s5.2-11.8,14.5-11.8,14.5,4.4,14.5,11.8-5.2,11.8-14.5,11.8Z"/>
+  <path class="st0" d="M51,16.6h-3.5l-13.6-5.7-13.6,5.7h-3.5V.2H.9v46.8h15.9v-16.7h2.9l14.3,6,14.3-6h2.9v16.7h15.9V.2h-15.9v16.4ZM33.9,27.8l-9.9-4.3,9.9-4.3,9.9,4.3-9.9,4.3Z"/>
+  <polygon points="65.4 57.9 60.5 57.9 60.5 72.7 74.5 72.7 74.5 68.9 65.4 68.9 65.4 57.9"/>
+  <polygon points="97.4 68.8 96.1 68.8 92.2 57.9 87 57.9 92.6 72.7 101 72.7 106.6 57.9 101.4 57.9 97.4 68.8"/>
+  <path d="M124.5,57.9l-5.6,14.8h5.2l.9-2.4h7.5l.9,2.4h5.2l-5.6-14.8h-8.4,0ZM126.2,66.7l1.8-4.9h1.3l1.8,4.9h-4.9,0Z"/>
+  <path d="M167.5,67.7c.1,0,.2,0,.3,0,2.3-.7,3.4-2.1,3.4-4.5,0-3.4-2.3-5.2-7.4-5.2h-9.5v14.8h4.9v-4.6h1.2c3.7,0,4.9,4.7,9.2,4.7h2.3v-4.2h-1.9c-1,0-1.7-.4-2.5-.9h0ZM163.9,64.9h-4.7v-3.2h4.7c1.6,0,2.4.5,2.4,1.6s-.8,1.6-2.4,1.6h0Z"/>
+  <polygon points="188.2 72.7 203.2 72.7 203.2 68.9 193 68.9 193 66.9 201.4 66.9 201.4 63.5 193 63.5 193 61.7 203.2 61.7 203.2 57.9 188.2 57.9 188.2 72.7"/>
+  <polygon points="218.9 61.7 227.5 61.7 227.5 61.9 218.9 68.9 218.9 72.7 234.4 72.7 234.4 68.9 225.8 68.9 225.8 68.7 234.4 61.7 234.4 57.9 218.9 57.9 218.9 61.7"/>
+  <polygon points="34.1 52.2 31.2 56.2 35.4 56.2 38.4 52.2 34.1 52.2"/>
+  <path d="M30.2,57.9l-5.6,14.8h5.2l.9-2.4h7.5l.9,2.4h5.2l-5.6-14.8s-8.4,0-8.4,0ZM32,66.7l1.8-4.9h1.3l1.8,4.9h-4.9,0Z"/>
+</svg>

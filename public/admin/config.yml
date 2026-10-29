@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: cesarleyto/template
+  repo: cesarleyto/hugoalvarezmx
   branch: main
 
 # Carpeta de imágenes por default
@@ -99,6 +99,54 @@ collections:
         fields:
           - { label: "Nombre del Blog", name: "title", widget: "string", default: "Nuestro Blog" }
           - { label: "Descripción del Blog", name: "description", widget: "text" }
+
+      # ==========================================
+      # NUEVO: GESTIÓN DE HUGO FEST 2026 (hugofest.json)
+      # ==========================================
+      - label: "🎉 Hugo Fest 2026"
+        name: "hugofest_config"
+        file: "src/data/hugofest.json"
+        fields:
+          - label: "1. Bloque CTA y Rifa"
+            name: "ctaBlock"
+            widget: "object"
+            fields:
+              - { label: "Título del Bloque", name: "title", widget: "string" }
+              - { label: "Imagen de la Rifa", name: "image", widget: "image" }
+              - { label: "Texto Alternativo (Alt)", name: "imageAlt", widget: "string", required: false }
+              - { label: "Enlace de la Rifa / Registro", name: "link", widget: "string" }
+              - { label: "Texto del Botón Principal", name: "buttonText", widget: "string" }
+
+          - label: "2. Bloque Programa / Invitados Especiales"
+            name: "programaBlock"
+            widget: "object"
+            fields:
+              - { label: "Título de la Sección", name: "title", widget: "string" }
+              - label: "Lista de Invitados / Eventos"
+                name: "eventos"
+                widget: "list"
+                fields:
+                  - { label: "Etiqueta (Tag Mono)", name: "tag", widget: "string", hint: "Ej: Conferencia magistral, Trova en vivo" }
+                  - { label: "Título / Nombre", name: "title", widget: "string" }
+                  - { label: "Subtítulo", name: "subtitle", widget: "string" }
+                  - { label: "Descripción", name: "description", widget: "text" }
+                  - { label: "Fotografía / Imagen", name: "image", widget: "image" }
+                  - { label: "Texto del Botón", name: "buttonText", widget: "string" }
+                  - { label: "Enlace del Botón", name: "link", widget: "string" }
+
+          - label: "3. Bloque Logos / Emprendimientos"
+            name: "logosBlock"
+            widget: "object"
+            fields:
+              - { label: "Título de la Sección", name: "title", widget: "string" }
+              - { label: "Descripción de la Sección", name: "description", widget: "string" }
+              - label: "Lista de Emprendimientos"
+                name: "emprendimientos"
+                widget: "list"
+                fields:
+                  - { label: "Nombre del Negocio", name: "name", widget: "string" }
+                  - { label: "Logotipo", name: "image", widget: "image" }
+                  - { label: "Sitio Web o Enlace del Negocio", name: "link", widget: "string" }
 
   # ==========================================
   # 2. SISTEMA RELACIONAL (Categorías y Autores)

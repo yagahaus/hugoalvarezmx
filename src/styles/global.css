@@ -4,24 +4,24 @@
 :root {
   /* --- COLORES BASE --- */
   --default-color: #ffffff;
-  --default-color-similar: #eaeaea;
+  --default-color-similar: #fff7f0; /* Un tono casi blanco con un ligerísimo toque cálido */
   
-  --color-acento: #eaeaea;
-  --color-acento2: #ffffff;
+  --color-acento: #FF8000; /* Naranja Movimiento Ciudadano */
+  --color-acento2: #212121; /* Gris casi negro para un contraste moderno y fuerte */
 
   /* --- TÍTULOS --- */
-  --titulos-default-color: #000000;
-  --titulos-color-acento: #000000;
-  --titulos-color-acento2: #000000;
+  --titulos-default-color: #FF8000; /* Títulos naranjas sobre fondos claros */
+  --titulos-color-acento: #ffffff; /* Títulos blancos sobre el fondo naranja */
+  --titulos-color-acento2: #FF8000; /* Títulos naranjas sobre el fondo oscuro */
 
   /* --- TEXTOS --- */
-  --texto-default-color: #000000;
-  --texto-color-acento: #000000;
-  --texto-color-acento2: #000000;
+  --texto-default-color: #212121; /* Textos oscuros sobre fondos claros */
+  --texto-color-acento: #ffffff; /* Textos blancos sobre el fondo naranja */
+  --texto-color-acento2: #f0f0f0; /* Textos claros sobre el fondo oscuro */
 
   /* --- FUENTES --- */
-  --font-main: 'Montserrat', sans-serif;
-  --font-mono: 'Space Mono', monospace;
+  --font-main: 'Montserrat', sans-serif; /* Cuerpos de texto y lectura general */
+  --font-mono: 'Space Mono', monospace;   /* Elementos destacados y técnico */
 
   /* --- FORMAS --- */
   --radius-capsule: 9999px;
@@ -34,12 +34,31 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  /* Por facto, el fondo del body es el similar */
   background-color: var(--default-color-similar);
   color: var(--texto-default-color);
-  font-family: var(--font-main);
-  line-height: 1.6;
+  font-family: var(--font-main); /* Cuerpo general en Montserrat */
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Forzar que los párrafos y contenidos de texto/blogs usen Montserrat */
+p, li, span, blockquote {
+  font-family: var(--font-main);
+}
+
+/* ==========================================
+   ENLACES INTELIGENTES (A prueba de contrastes)
+   ========================================== */
+a {
+  color: var(--link-color, var(--color-acento)); /* Por defecto toma el naranja o la variable del contenedor */
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.8;
 }
 
 /* ==========================================
@@ -54,6 +73,7 @@ body {
   --btn-bg: var(--color-acento);
   --btn-text: var(--texto-color-acento);
   --outline-color: var(--texto-default-color);
+  --link-color: #D96D00; /* Un naranja ligeramente más oscuro para asegurar contraste óptimo en fondos blancos */
 }
 
 /* 2. Fondo Acento */
@@ -64,6 +84,7 @@ body {
   --btn-bg: var(--color-acento2); /* Botón contraste */
   --btn-text: var(--texto-color-acento2);
   --outline-color: var(--texto-color-acento);
+  --link-color: #ffffff; /* En fondo naranja, el enlace resalta en blanco puro */
 }
 
 /* 3. Fondo Acento 2 */
@@ -74,11 +95,12 @@ body {
   --btn-bg: var(--color-acento); /* Botón contraste */
   --btn-text: var(--texto-color-acento);
   --outline-color: var(--texto-color-acento2);
+  --link-color: #FF8000; /* En fondo oscuro, el enlace brilla en naranja */
 }
 
-/* Títulos automáticos según el fondo donde vivan */
+/* Títulos automáticos según el fondo donde vivan (Usan Space Mono para dar carácter) */
 h1, h2, h3, h4 {
-  font-family: var(--font-main);
+  font-family: var(--font-mono);
   color: var(--titulo-actual, var(--titulos-default-color));
   font-weight: 700;
   line-height: 1.2;
@@ -130,7 +152,6 @@ h1, h2, h3, h4 {
 .nav-capsule {
   background-color: var(--default-color);
   border-radius: var(--radius-capsule);
-  /* Sombra al 50% del texto-default-color (negro) */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
   display: inline-flex; align-items: center;
   gap: 2rem; padding: 0.5rem 0.5rem 0.5rem 2rem;
@@ -149,6 +170,7 @@ h1, h2, h3, h4 {
 .social-nav-link {
   color: var(--titulos-default-color);
   transition: transform 0.2s ease; display: inline-flex;
+  text-decoration: none;
 }
 .social-nav-link:hover { transform: scale(1.1); }
 .social-nav-link svg { width: 20px; height: 20px; }
@@ -187,7 +209,6 @@ h1, h2, h3, h4 {
   }
   .mobile-menu-modal.open .mobile-menu-content { transform: translateY(0); }
   
-  /* Textos al 75% y alineados a la izquierda */
   .mobile-menu-content .nav-link { font-size: 1.2rem; text-align: left; width: 100%; display: block; }
   .mobile-menu-content .btn-principal { font-size: 0.8rem; width: 100%; justify-content: flex-start; }
   

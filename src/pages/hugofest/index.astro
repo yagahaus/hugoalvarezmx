@@ -1,0 +1,417 @@
+---
+import content from '../../data/hugofest.json';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hugo Fest Emprendedor - Buen Fin 2026</title>
+  <link rel="icon" type="image/png" href="assets/images/hugofest/favicon.ico">
+  
+  <style>
+    /* ==========================================
+       CSS BASE (Variables y Reseteo)
+       ========================================== */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+    :root {
+      --default-color: #ffffff;
+      --default-color-similar: #fff7f0;
+      --color-acento: #FF8000;
+      --color-acento2: #212121;
+
+      --titulos-default-color: #FF8000;
+      --titulos-color-acento: #ffffff;
+      --titulos-color-acento2: #FF8000;
+
+      --texto-default-color: #212121;
+      --texto-color-acento: #ffffff;
+      --texto-color-acento2: #f0f0f0;
+
+      /* Cuerpos en Montserrat, Destacados en Space Mono */
+      --font-main: 'Montserrat', sans-serif;
+      --font-mono: 'Space Mono', monospace;
+
+      --radius-capsule: 9999px;
+      --radius-card: 24px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--default-color-similar);
+      color: var(--texto-default-color);
+      font-family: var(--font-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* MÁQUINAS DE CONTRASTE */
+    .fondo-default { background-color: var(--default-color); color: var(--texto-default-color); --titulo-actual: var(--titulos-default-color); --outline-color: var(--texto-default-color); }
+    .fondo-acento { background-color: var(--color-acento); color: var(--texto-color-acento); --titulo-actual: var(--titulos-color-acento); --outline-color: var(--texto-color-acento); }
+    .fondo-acento2 { background-color: var(--color-acento2); color: var(--texto-color-acento2); --titulo-actual: var(--titulos-color-acento2); --outline-color: var(--texto-color-acento2); }
+
+    h1, h2, h3, h4 { font-family: var(--font-main); color: var(--titulo-actual, var(--titulos-default-color)); font-weight: 800; line-height: 1.2; }
+
+    /* BOTONES CON DEGRADADO HORIZONTAL (Coincidente con la portada) */
+    .btn-principal {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+      background: linear-gradient(to right, #FF8000, #ffb100);
+      color: #ffffff;
+      font-family: var(--font-mono); font-weight: 700; font-size: 0.95rem;
+      text-transform: uppercase; text-decoration: none; padding: 1rem 2rem;
+      border-radius: var(--radius-capsule);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+      border: none; cursor: pointer; text-align: center;
+      box-shadow: 0 4px 15px rgba(255, 128, 0, 0.3);
+    }
+    .btn-principal:hover { transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 128, 0, 0.5); }
+
+    .tag-mono { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; background: var(--color-acento); color: #fff; padding: 4px 12px; border-radius: var(--radius-capsule); display: inline-block; margin-bottom: 0.5rem; }
+
+    /* ==========================================
+       ESTILOS DEL LANDING PAGE
+       ========================================== */
+
+    /* Navegador Flotante */
+    .nav-flotante {
+      position: fixed; top: 20px; left: 10%; transform: translateX(-10%); z-index: 1000;
+      background-color: var(--default-color); border-radius: var(--radius-capsule);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); padding: 10px 30px;
+      display: flex; align-items: center; justify-content: center; transition: transform 0.3s ease;
+    }
+    .nav-flotante img { height: 40px; width: auto; transition: transform 0.3s ease; }
+    .nav-flotante:hover img { transform: scale(1.15); }
+
+    /* Portada (Hero) */
+    .hero {
+      position: relative; min-height: 100vh;
+      background: linear-gradient(to top, var(--color-acento) 0%, #ffcc00 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 100px 20px 40px; text-align: center; overflow: hidden;
+    }
+    
+    /* Animación SVG 1 (Hugo Fest) */
+    .svg-hugofest { max-width: 800px; width: 90%; animation: zoomLoad 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+    @keyframes zoomLoad {
+      0% { transform: scale(0.1); opacity: 0; }
+      70% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Animación SVG 2 (Buen Fin - Columpio) */
+    .svg-buenfin {
+      max-width: 150px; width: 70%; margin-top: 20px; position: relative; z-index: 2;
+      transform-origin: top center; animation: swing 4s ease-in-out infinite;
+    }
+    @keyframes swing {
+      0% { transform: rotate(5deg); }
+      50% { transform: rotate(-5deg); }
+      100% { transform: rotate(5deg); }
+    }
+
+    /* Contenedor del Hero Info (Cuenta Regresiva + Info Evento) */
+    .hero-info-wrapper {
+      display: flex; align-items: center; justify-content: center; gap: 30px;
+      margin-top: 40px; width: 100%; max-width: 900px; flex-wrap: wrap;
+      animation: fadeUp 1.5s ease forwards 1s; opacity: 0;
+    }
+
+    /* Cuenta Regresiva */
+    .countdown-container {
+      padding: 20px 30px; background: rgba(255,255,255,0.92);
+      border-radius: var(--radius-card); box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      flex: 1; min-width: 280px; text-align: center;
+    }
+    .countdown-title { font-size: 0.9rem; font-weight: 700; color: var(--color-acento); text-transform: uppercase; margin-bottom: 8px; }
+    .countdown-timer { font-family: var(--font-mono); font-size: 1.8rem; font-weight: 700; color: var(--color-acento2); }
+
+    /* Recuadro de Fecha y Lugar */
+    .evento-info-box {
+      padding: 20px 25px; background: rgba(255,255,255,0.92);
+      border-radius: var(--radius-card); box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      flex: 1.2; min-width: 300px; text-align: left; display: flex; flex-direction: column; gap: 12px;
+    }
+    .evento-info-item { display: flex; align-items: flex-start; gap: 12px; font-size: 0.9rem; color: var(--color-acento2); }
+    .evento-info-item svg { width: 20px; height: 20px; color: var(--color-acento); flex-shrink: 0; margin-top: 2px; }
+    .evento-info-item strong { display: block; font-weight: 700; }
+    .evento-info-item span { color: #555; font-size: 0.85rem; }
+
+    /* Botón Google Maps con Degradado Horizontal */
+    .btn-mapa {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;      
+      background: linear-gradient(to right, #FF8000, #ffb100);
+      color: #ffffff;
+      font-family: var(--font-mono); font-weight: 700; font-size: 0.8rem;
+      text-transform: uppercase; text-decoration: none; padding: 10px 18px;
+      border-radius: var(--radius-capsule); transition: transform 0.3s ease; margin-top: 5px;
+      box-shadow: 0 2px 10px rgba(255, 128, 0, 0.2);
+    }
+    .btn-mapa:hover { transform: scale(1.05); }
+    .btn-mapa svg { width: 16px; height: 16px; color: currentColor; }
+    
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } from { opacity: 0; transform: translateY(20px); } }
+
+    /* Secciones Generales */
+    .seccion { padding: 80px 20px; display: flex; flex-direction: column; align-items: center; }
+    .contenedor { max-width: 1000px; width: 100%; margin: 0 auto; text-align: center; }
+
+    /* Rifa - Centrado perfecto en Desktop y Mobile */
+    .rifa-wrapper { display: flex; justify-content: center; width: 100%; }
+    .rifa-imagen { max-width: 100%; height: auto; border-radius: 12px; margin: 20px 0; transition: transform 0.3s ease; display: block; }
+    .rifa-imagen:hover { transform: scale(1.02); }
+
+    /* Carrusel de Texto (Marquee) */
+    .marquee-wrapper { width: 100%; overflow: hidden; padding: 40px 0; display: flex; flex-direction: column; gap: 20px; }
+    .marquee { display: flex; white-space: nowrap; width: fit-content; }
+    .marquee.right { animation: scrollRight 15s linear infinite; }
+    .marquee.left { animation: scrollLeft 30s linear infinite; align-self: flex-end; }
+    
+    .marquee span {
+      font-family: var(--font-mono); font-weight: 700; font-size: 2.5rem; color: #ffffff;
+      text-transform: uppercase; padding: 0 30px; cursor: default;
+      text-shadow: 0 0 10px rgba(255,255,255,0.5);
+      transition: all 0.3s ease;
+    }
+    .marquee span:hover { transform: scale(1.1); text-shadow: 0 0 20px rgba(255,255,255,1); color: #fff; }
+
+    @keyframes scrollLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    @keyframes scrollRight { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
+    /* Programa de Actividades */
+    .programa-card {
+      display: flex; align-items: center; text-align: left; background: #fff;
+      border-radius: var(--radius-card); padding: 30px; margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05); gap: 30px;
+    }
+    .programa-card img { width: 250px; height: 250px; object-fit: cover; border-radius: 16px; flex-shrink: 0; }
+    .programa-info h3 { font-size: 1.8rem; margin: 10px 0; color: var(--color-acento); }
+    .programa-info span.sub { font-family: var(--font-mono); font-size: 0.9rem; color: #666; font-weight: 700; display: block; margin-bottom: 15px; }
+
+    /* Emprendimientos */
+    .emprendimientos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 40px; }
+    .emprendimiento-item { text-align: center; }
+    .emprendimiento-item a { text-decoration: none; display: inline-block; }
+    .emprendimiento-item img { width: 100px; height: 100px; border-radius: 10%; object-fit: cover; margin-bottom: 15px; transition: transform 0.3s ease; background: #eaeaea; padding: 15px; display: block; margin-left: auto; margin-right: auto; }
+    .emprendimiento-item:hover img { transform: scale(1.1) translateY(-10px); box-shadow: 0 15px 20px rgba(255,128,0,0.2); }
+    .emprendimiento-item p { font-weight: 700; font-size: 0.9rem; color: var(--color-acento2); }
+
+    /* Footer */
+    .footer { padding: 60px 20px; text-align: center; }
+    .footer-social { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
+    .footer-social a { color: var(--color-acento); transition: transform 0.3s; }
+    .footer-social a:hover { transform: scale(1.2); }
+    .footer-contacto { font-family: var(--font-mono); margin-bottom: 40px; font-size: 0.9rem; }
+    .footer-contacto a { color: #ffffff; text-decoration: none; transition: color 0.3s; }
+    .footer-contacto a:hover { color: var(--color-acento); }
+    .logo-footer { width: 150px; opacity: 0.8; transition: opacity 0.3s; }
+    .logo-footer:hover { opacity: 0.3; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .programa-card { flex-direction: column; text-align: center; }
+      .programa-card img { width: 100%; height: auto; aspect-ratio: 1/1; }
+      .emprendimientos-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .marquee span { font-size: 1.5rem; }
+      .countdown-timer { font-size: 1.5rem; }
+      .hero-info-wrapper { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVEGADOR FLOTANTE -->
+  <nav class="nav-flotante">
+    <a href="https://www.hugoalvarez.mx">
+      <img src="assets/images/hugofest/logo.svg" alt="Hugo Álvarez">
+    </a>
+  </nav>
+
+  <!-- PORTADA (HERO) -->
+  <header class="hero">
+    <img src="assets/images/hugofest/hugofest.svg" alt="Hugo Fest Emprendedor" class="svg-hugofest">
+    <img src="assets/images/hugofest/buenfin.svg" alt="Edición Buen Fin 2026" class="svg-buenfin">
+    
+    <!-- CONTENEDOR DE CUENTA REGRESIVA Y DATOS DEL EVENTO -->
+    <div class="hero-info-wrapper">
+      
+      <!-- Cuenta Regresiva -->
+      <div class="countdown-container">
+        <div class="countdown-title">El evento comienza en:</div>
+        <div class="countdown-timer" id="countdown">Cargando...</div>
+      </div>
+
+      <!-- Recuadro Fecha y Lugar -->
+      <div class="evento-info-box">
+        <!-- Fecha -->
+        <div class="evento-info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <div>
+            <strong>Sábado 14 de noviembre de 2026</strong>
+          </div>
+        </div>
+
+        <!-- Horario -->
+        <div class="evento-info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <div>
+            <strong>11:00 AM a 8:00 PM</strong>
+          </div>
+        </div>
+
+        <!-- Sede y Ubicación -->
+        <div class="evento-info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <div>
+            <strong>Salón Chesseline</strong>
+            <span>Calle Azafatas, Col. Aviación, Salina Cruz, Oax.</span>
+          </div>
+        </div>
+
+        <!-- Botón Google Maps -->
+        <div>
+          <a href="https://maps.app.goo.gl/yt6QTGpniowCsNkP9" target="_blank" class="btn-mapa">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+            Google Maps
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- CARRUSEL 1 (MARQUEE) -->
+  <section class="fondo-acento marquee-wrapper" style="padding: 30px 0;">
+    <div class="marquee right">
+      <span>BAZAR EMPRENDEDOR</span>
+      <span>ALIMENTOS Y BEBIDAS</span>
+      <span>ARTE</span>
+      <span>ARTESANÍAS</span>
+      <span>MÚSICA EN VIVO</span>
+      <span>CONFERENCIAS Y MÁS</span>
+    </div>
+  </section>
+  
+  <!-- SECCIÓN: REGISTRO Y RIFA (DINÁMICO DESDE JSON) -->
+  <section class="seccion fondo-default">
+    <div class="contenedor">
+      <h2 style="font-size: 2.5rem; margin-bottom: 20px;">{content.ctaBlock.title}</h2>
+      <div class="rifa-wrapper">
+        <a href={content.ctaBlock.link} target="_blank">
+          <img src={content.ctaBlock.image} alt={content.ctaBlock.imageAlt} class="rifa-imagen">
+        </a>
+      </div>
+      <a href={content.ctaBlock.link} class="btn-principal" style="margin-top: 20px;">
+        {content.ctaBlock.buttonText}
+      </a>
+    </div>
+  </section>
+
+  <!-- SECCIÓN: PROGRAMA DE ACTIVIDADES (DINÁMICO DESDE JSON) -->
+  <section class="seccion fondo-default" style="background-color: var(--default-color-similar);">
+    <div class="contenedor">
+      <h2 style="font-size: 2.5rem; margin-bottom: 40px; color: var(--color-acento2);">{content.programaBlock.title}</h2>
+
+      {content.programaBlock.eventos.map((evento) => (
+        <div class="programa-card">
+          <img src={evento.image} alt={evento.title}>
+          <div class="programa-info">
+            <span class="tag-mono">{evento.tag}</span>
+            <h3>{evento.title}</h3>
+            <span class="sub">{evento.subtitle}</span>
+            <p style="margin-bottom: 25px;">{evento.description}</p>
+            <a href={evento.link} class="btn-principal">{evento.buttonText}</a>
+          </div>
+        </div>
+      ))}
+
+    </div>
+  </section>
+
+  <!-- SECCIÓN: EMPRENDIMIENTOS (DINÁMICO DESDE JSON) -->
+  <section class="seccion fondo-default">
+    <div class="contenedor">
+      <h2 style="font-size: 2.2rem; margin-bottom: 10px;">{content.logosBlock.title}</h2>
+      <p style="color: #666;">{content.logosBlock.description}</p>
+      
+      <div class="emprendimientos-grid">
+        {content.logosBlock.emprendimientos.map((item) => (
+          <div class="emprendimiento-item">
+            <a href={item.link} target="_blank">
+              <img src={item.image} alt={item.name}>
+              <p>{item.name}</p>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CARRUSEL 2 (MARQUEE) -->
+  <section class="fondo-acento marquee-wrapper" style="padding: 30px 0;">
+    <div class="marquee right">
+      <span>BAZAR EMPRENDEDOR</span>
+      <span>ALIMENTOS Y BEBIDAS</span>
+      <span>ARTE</span>
+      <span>ARTESANÍAS</span>
+      <span>MÚSICA EN VIVO</span>
+      <span>CONFERENCIAS Y MÁS</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer fondo-acento2">
+    <!-- Redes Sociales -->
+    <div class="footer-social">
+      <a href="https://www.facebook.com/hugoalvarezmx" target="_blank">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/hugoalvarezmx" target="_blank">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@hugoalvarezmx" target="_blank">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
+      </a>
+    </div>
+
+    <!-- Contacto -->
+    <div class="footer-contacto">
+      <span style="color: var(--color-acento);">WhatsApp:</span> 
+      <a href="https://wa.me/5219712206422">971 220 6422</a> 
+      <span style="color: var(--color-acento); margin: 0 15px;">|</span> 
+      <a href="https://www.hugoalvarez.mx">www.hugoalvarez.mx</a>
+    </div>
+
+    <!-- Logo Final -->
+    <img src="assets/images/hugofest/logo_hugo.svg" alt="Hugo Álvarez" class="logo-footer">
+  </footer>
+
+  <!-- SCRIPT DE CUENTA REGRESIVA -->
+  <script>
+    // Fecha del evento: 14 de Noviembre de 2026 a las 11:00 AM
+    const countDownDate = new Date("Nov 14, 2026 11:00:00").getTime();
+
+    const x = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = countDownDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = 
+        days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("countdown").innerHTML = "¡EL EVENTO HA COMENZADO!";
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>

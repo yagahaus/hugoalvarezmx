@@ -6,18 +6,22 @@
       "url": "/"
     },
     {
-      "texto": "Sobre Mi",
-      "url": "/sobre-mi"
+      "texto": "Manifiesto",
+      "url": "/manifiesto"
     },
     {
       "texto": "Blog",
       "url": "/blog"
+    },
+    {
+      "texto": "HugoFest 2026",
+      "url": "/hugofest"
     }
   ],
   "botones": [
     {
-      "texto": "¡Agenda vía WhatsApp!",
-      "url": "https://wa.me/529710000000"
+      "texto": "BUZÓN CIUDADANO",
+      "url": "https://app.hugoalvarez.mx/buzon"
     }
   ]
 }

@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" width="59.07" height="59.07" viewBox="0 0 59.07 59.07">
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" width="157.33" height="111.44" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 157.33 111.44">
+  <defs>
+    <linearGradient id="Degradado_sin_nombre_2" data-name="Degradado sin nombre 2" x1="78.66" y1="111.44" x2="78.66" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset=".7" stop-color="#ee8633"/>
+      <stop offset="1" stop-color="#f3bb41"/>
+    </linearGradient>
+  </defs>
   <g id="Capa_1-2" data-name="Capa 1">
-    <rect width="59.07" height="59.07" rx="7" ry="7" fill="#6a61f6"/>
-    <path d="M49.16,26.03h-12.35l8.73-8.73c1.18-1.18,1.18-3.08,0-4.26h0c-1.18-1.18-3.08-1.18-4.26,0l-8.73,8.73v-12.35c0-1.66-1.35-3.01-3.01-3.01h0c-1.66,0-3.01,1.35-3.01,3.01v12.35l-8.73-8.73c-1.18-1.18-3.08-1.18-4.26,0h0c-1.18,1.18-1.18,3.08,0,4.26l8.73,8.73h-12.35c-1.66,0-3.01,1.35-3.01,3.01s1.35,3.01,3.01,3.01h12.35l-4.05,4.05c-1.18,1.18-1.18,3.08,0,4.26h0c1.18,1.18,3.08,1.18,4.26,0l4.05-4.05v12.35c0,1.66,1.35,3.01,3.01,3.01s3.01-1.35,3.01-3.01v-12.35l4.05,4.05c1.18,1.18,3.08,1.18,4.26,0h0c1.18-1.18,1.18-3.08,0-4.26l-4.05-4.05h12.35c1.66,0,3.01-1.35,3.01-3.01s-1.35-3.01-3.01-3.01Z" fill="#ffe164"/>
+    <path d="M119.48,39.08h-8.37l-32.44-13.53-32.44,13.53h-8.37V0H0v111.44h37.85v-39.76h6.84l33.97,14.21,33.97-14.21h6.84v39.76h37.85V0h-37.85v39.08ZM78.76,65.85l-23.64-10.13,23.64-10.13,23.64,10.13-23.64,10.13Z" fill="url(#Degradado_sin_nombre_2)"/>
   </g>
 </svg>

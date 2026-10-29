@@ -1,11 +1,11 @@
 {
-  "title": "¿Es momento de su esquema de vacunación?",
-  "description": "Mantén a tus pequeños protegidos contra enfermedades prevenibles. Contamos con todas las vacunas del esquema nacional y biológicos complementarios sin dolor.",
-  "image": "/assets/images/image.jpg.webp.jpeg",
+  "title": "Buzón Ciudadano: ¿Qué es lo más urgente en tu colonia?",
+  "description": "Los mejores proyectos se construyen caminando y platicando con los vecinos. Cuéntame qué situación se vive en tu calle o comunidad. El diálogo es el primer paso para tener un mejor puerto.",
+  "image": "/assets/images/buzon.jpg",
   "botones": [
     {
-      "texto": "Revisar Cartilla",
-      "url": "/blog/importancia-vacunas-primer-ano"
+      "texto": "Enviar Mensaje",
+      "url": "https://app.hugoalvarez.mx/buzon"
     }
   ]
 }

@@ -1,0 +1,58 @@
+{
+  "ctaBlock": {
+    "title": "¡Regístrate y participa en la rifa!",
+    "image": "/assets/images/hugofest/rifa_hugofest.png",
+    "imageAlt": "Participa en la Rifa",
+    "link": "https://app.hugoalvarez.mx/hugofest2026",
+    "buttonText": "Quiero mi boleto y participar en la rifa"
+  },
+  "programaBlock": {
+    "title": "Invitados Especiales",
+    "eventos": [
+      {
+        "tag": "Conferencia magistral",
+        "title": "Mario Carballido",
+        "subtitle": "Charla Motivacional",
+        "description": "Comunicador, actor y conferencista internacional mexicano con más de 30 años de trayectoria en los medios de comunicación y el desarrollo humano. Mario viene a darte un taller de cómo superar y emprender frente los obstáculos de la vida. Acompáñanos a descubrir estrategias prácticas y anécdotas inspiradoras para llevar tu negocio y tu mentalidad al siguiente nivel.",
+        "image": "/assets/images/hugofest/mariocarballido.jpg",
+        "buttonText": "Obtener boleto gratis",
+        "link": "https://app.hugoalvarez.mx/hugofest2026"
+      },
+      {
+        "tag": "Trova en vivo",
+        "title": "Roberto Carlos",
+        "subtitle": "El romántico del Istmo",
+        "description": "Roberto Carlos es un virtuoso trovador y cantante de Salina Cruz, Oaxaca, que nos deleitará con los temas más románticos para compartir en familia y con el ser amado durante este magno evento. No te lo puedes perder.",
+        "image": "/assets/images/hugofest/robertocarlos.jpg",
+        "buttonText": "Obtener boleto gratis",
+        "link": "https://app.hugoalvarez.mx/hugofest2026"
+      }
+    ]
+  },
+  "logosBlock": {
+    "title": "Emprendimientos Presentes",
+    "description": "Apoya el talento y el comercio local de Salina Cruz.",
+    "emprendimientos": [
+      {
+        "name": "Por Anunciar",
+        "image": "/assets/images/hugofest/negocios/logo_ejemplo.svg",
+        "link": "https://www.hugoalvarez.mx"
+      },
+      {
+        "name": "Por Anunciar",
+        "image": "/assets/images/hugofest/negocios/logo_ejemplo.svg",
+        "link": "https://www.hugoalvarez.mx"
+      },
+      {
+        "name": "Por Anunciar",
+        "image": "/assets/images/hugofest/negocios/logo_ejemplo.svg",
+        "link": "https://www.hugoalvarez.mx"
+      },
+      {
+        "name": "Por Anunciar",
+        "image": "/assets/images/hugofest/negocios/logo_ejemplo.svg",
+        "link": "https://www.hugoalvarez.mx"
+      }
+    ]
+  }
+}
