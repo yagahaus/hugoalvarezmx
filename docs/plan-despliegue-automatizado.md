@@ -1,7 +1,7 @@
 # 🚀 Plan de Despliegue Automatizado para `hugoalvarez.mx`
 
 **Proyecto:** MKT 499 — Sitio Oficial de Campaña y HugoFest Emprendedor  
-**Repositorio:** `hugoalvarezmx` (`cesarleyto/hugoalvarezmx`)  
+**Repositorio:** `hugoalvarezmx` (`yagahaus/hugoalvarezmx`)  
 **Dominio de Producción:** [https://hugoalvarez.mx/](https://hugoalvarez.mx/)  
 **Infraestructura:** AWS S3 + CloudFront + Route 53 (perfil `--profile dmv0`)  
 

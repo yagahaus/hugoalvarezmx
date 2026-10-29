@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: cesarleyto/hugoalvarezmx
+  repo: yagahaus/hugoalvarezmx
   branch: main
 
 # Carpeta de imágenes por default
