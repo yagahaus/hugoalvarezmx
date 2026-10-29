@@ -45,6 +45,7 @@ jobs:
       - name: Sync HTML Files to S3 (No-Cache / Must-Revalidate)
         run: |
           aws s3 sync dist/ s3://${{ secrets.AWS_S3_BUCKET || 'hugoalvarez-mx-web-prod' }}/ \
+            --exclude "*" \
             --include "*.html" \
             --cache-control "public, max-age=0, must-revalidate"
 

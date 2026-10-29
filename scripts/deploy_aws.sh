@@ -81,7 +81,7 @@ fi
 # 2. Sincronización a S3
 DRY_RUN_FLAG=""
 if [ "$DRY_RUN" = true ]; then
-    DRY_RUN_FLAG="--dry-run"
+    DRY_RUN_FLAG="--dryrun"
     echo "${YELLOW}==> MODO DRY-RUN: No se aplicarán cambios reales en AWS.${RESET}"
 fi
 
@@ -96,6 +96,7 @@ aws s3 sync "${DIST_DIR}/" "s3://${S3_BUCKET}/" \
 
 echo "${BLUE}==> 3. Sincronizando archivos HTML a S3 (Caché Dinámica / Revalidar)...${RESET}"
 aws s3 sync "${DIST_DIR}/" "s3://${S3_BUCKET}/" \
+    --exclude "*" \
     --include "*.html" \
     --cache-control "public, max-age=0, must-revalidate" \
     --profile "${AWS_PROFILE}" \
