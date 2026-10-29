@@ -29,15 +29,6 @@ jobs:
       - name: Build Astro Site
         run: npm run build
 
-      - name: Inspect OIDC Token Claims
-        run: |
-          TOKEN=$(curl -s -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=sts.amazonaws.com" | jq -r '.value')
-          echo "JWT Header:"
-          echo "$TOKEN" | cut -d'.' -f1 | base64 --decode || true
-          echo ""
-          echo "JWT Payload:"
-          echo "$TOKEN" | cut -d'.' -f2 | base64 --decode || true
-
       - name: Configure AWS Credentials (OIDC)
         uses: aws-actions/configure-aws-credentials@v4
         with:
