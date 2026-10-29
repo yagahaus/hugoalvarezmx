@@ -40,15 +40,17 @@ flowchart TD
 
 ---
 
-## 🏛️ 2. Componentes de Infraestructura en AWS
+## 🏛️ 2. Componentes de Infraestructura en AWS (Valores Provisionados)
 
-| Componente | Recurso / Configuración | Propósito |
-| :--- | :--- | :--- |
-| **DNS** | **AWS Route 53** (Hosted Zone `Z04813761RU9V5EPD9HNX`) | Resuelve `hugoalvarez.mx` y `www.hugoalvarez.mx` mediante registros Alias tipo `A` y `AAAA` hacia CloudFront. |
-| **Almacenamiento** | **AWS S3** (`hugoalvarez-mx-web-prod`) | Bucket privado en `us-east-1` que almacena los archivos estáticos compilados de Astro (`dist/`). |
-| **Seguridad de Origen** | **Origin Access Control (OAC)** | Bloquea el acceso público directo a S3; **únicamente CloudFront** tiene permisos de lectura (`s3:GetObject`). |
-| **CDN & SSL** | **AWS CloudFront** + **ACM Certificate** | Distribución global con compresión Brotli/Gzip, HTTP/2, HTTP/3 y certificado SSL TLS 1.3 emitido en `us-east-1`. |
-| **CI/CD** | **GitHub Actions** + **AWS IAM OIDC** | Pipeline automatizado que compila y sincroniza el sitio en cada merge a `main`. |
+| Componente | Recurso / Configuración | Detalle / ID | Propósito |
+| :--- | :--- | :--- | :--- |
+| **DNS** | **AWS Route 53** | Hosted Zone `Z04813761RU9V5EPD9HNX` | Resuelve `hugoalvarez.mx` y `www.hugoalvarez.mx` mediante registros Alias tipo `A` y `AAAA` hacia CloudFront. |
+| **Almacenamiento** | **AWS S3** | `hugoalvarez-mx-web-prod` (`us-east-1`) | Bucket privado que almacena los archivos estáticos compilados de Astro (`dist/`). |
+| **Seguridad de Origen** | **Origin Access Control (OAC)** | ID: `E3H67VP7DKVVV3` (`oac-hugoalvarez-mx-s3`) | Bloquea el acceso público directo a S3; **únicamente CloudFront** tiene permisos de lectura (`s3:GetObject`). |
+| **CDN & SSL** | **AWS CloudFront** | Distribution ID: `EGJPF1AJ6TNCJ`<br/>Dominio: `dtp7r8ccotg6m.cloudfront.net` | Distribución global con compresión Brotli/Gzip, HTTP/2, HTTP/3 y certificado SSL TLS 1.3 emitido en `us-east-1`. |
+| **Certificado SSL** | **AWS ACM** | ARN: `arn:aws:acm:us-east-1:554439199619:certificate/3f5029b6-1722-4735-a0a8-491cd3a664f8` | Certificado validado por DNS para `hugoalvarez.mx` y `www.hugoalvarez.mx`. |
+| **URL Rewriter** | **CloudFront Function** | `cf-subfolder-index-rewrite` | Reescritura transparente de subdirectorios para Astro SSG (`/seccion/` ➔ `/seccion/index.html`). |
+| **CI/CD** | **GitHub Actions** + **AWS IAM OIDC** | Workflow `.github/workflows/deploy.yml` | Pipeline automatizado que compila y sincroniza el sitio en cada merge a `main`. |
 
 ---
 
@@ -86,36 +88,13 @@ Para permitir que cualquier agente o desarrollador despliegue a producción desd
 
 ---
 
-## 📋 5. Pasos de Aprovisionamiento Inicial (Prerrequisitos en AWS)
+## 📋 5. Estado de Aprovisionamiento en AWS
 
-Para activar el pipeline por primera vez, se requiere ejecutar la siguiente secuencia única con AWS CLI:
+Los recursos de infraestructura han sido aprovisionados y enlazados exitosamente:
 
-### Paso 1: Crear el Bucket S3 Privado
-```bash
-aws s3api create-bucket \
-  --bucket hugoalvarez-mx-web-prod \
-  --region us-east-1 \
-  --profile dmv0
-
-aws s3api put-public-access-block \
-  --bucket hugoalvarez-mx-web-prod \
-  --public-access-block-configuration "BlockPublicAcls=true,IgnorePublicAcls=true,BlockPublicPolicy=true,RestrictPublicBuckets=true" \
-  --profile dmv0
-```
-
-### Paso 2: Solicitar Certificado SSL en ACM (`us-east-1`)
-```bash
-aws acm request-certificate \
-  --domain-name "hugoalvarez.mx" \
-  --subject-alternative-names "www.hugoalvarez.mx" \
-  --validation-method DNS \
-  --region us-east-1 \
-  --profile dmv0
-```
-*(Se agrega el registro CNAME de validación en Route 53 mediante `--profile dmv0`).*
-
-### Paso 3: Crear Distribución de CloudFront con OAC
-Configurar la distribución apuntando al bucket S3 con soporte para Single Page Application / Static Site (Default Root Object: `index.html`, Error Response 404 -> `404.html`).
-
-### Paso 4: Apuntar Route 53 a CloudFront
-Crear registros Alias `A` y `AAAA` en `Z04813761RU9V5EPD9HNX` apuntando al dominio `.cloudfront.net`.
+- ✅ **Bucket S3 Privado:** `hugoalvarez-mx-web-prod` (región `us-east-1`, bloqueo público activo).
+- ✅ **Certificado SSL ACM:** `arn:aws:acm:us-east-1:554439199619:certificate/3f5029b6-1722-4735-a0a8-491cd3a664f8` (`ISSUED`).
+- ✅ **Origin Access Control (OAC):** `E3H67VP7DKVVV3` asignado en CloudFront y autorizado en la Bucket Policy de S3.
+- ✅ **CloudFront Function:** `cf-subfolder-index-rewrite` publicada y asociada al evento `viewer-request`.
+- ✅ **Distribución CloudFront:** `EGJPF1AJ6TNCJ` (`dtp7r8ccotg6m.cloudfront.net`).
+- ✅ **Registros DNS en Route 53:** Registros Alias `A` y `AAAA` para `hugoalvarez.mx` y `www.hugoalvarez.mx` apuntando a `dtp7r8ccotg6m.cloudfront.net`.
