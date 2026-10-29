@@ -12,6 +12,8 @@ Ahí conocí de primera mano la **cultura emprendedora** y descubrí que mi verd
 
 Mi gremio me ha honrado eligiéndome como **líder empresarial y de la construcción** en la **COPARMEX** y la **CMIC**, espacios desde donde siempre hemos luchado para mejorar las condiciones de las y los trabajadores, buscando siempre el bienestar de nuestra gente.
 
+![](/assets/images/ingeniero-hugo-alvarez-greentek-salina-cruz.jpg "Ing. Hugo Álvarez Carbajal - Fundador de Greentek, empresa líder en el sector de la construcción, proveeduría de materiales y obra civil en la región del Istmo de Tehuantepec.")
+
 Desafortunadamente, al gobierno no siempre llegan los mejores. Sin embargo, tengo la firme convicción de que, incluso desde el sector privado y como ciudadanos organizados, **podemos caminar juntos y construir algo verdaderamente bello para nuestro puerto** desde nuestro lugar. Las verdaderas transformaciones nacen desde la sociedad, con trabajo honesto y dando siempre lo mejor de nosotros.
 
 Yo siempre seguiré caminando como **empresario y constructor** que edifica con **Amor por** **[Salina Cruz](https://maps.app.goo.gl/wdVaKEGPh4gAEcZy8)**. Mi convicción siempre será apoyar al puerto. Lo he hecho y lo seguiré haciendo.
