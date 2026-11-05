@@ -34,24 +34,72 @@
     "description": "Apoya el talento y el comercio local de Salina Cruz.",
     "emprendimientos": [
       {
-        "name": "Por Anunciar",
-        "image": "/assets/images/hugofest/negocios/logo_ejemplo.svg",
-        "link": "https://www.hugoalvarez.mx"
+        "name": "VC Skin",
+        "image": "/assets/images/hugofest/negocios/vc skin.jpeg"
       },
       {
-        "name": "Por Anunciar",
-        "image": "/assets/images/hugofest/negocios/logo_ejemplo.svg",
-        "link": "https://www.hugoalvarez.mx"
+        "name": "Creaciones Magy",
+        "image": "/assets/images/hugofest/negocios/creaciones magy.jpeg"
       },
       {
-        "name": "Por Anunciar",
-        "image": "/assets/images/hugofest/negocios/logo_ejemplo.svg",
-        "link": "https://www.hugoalvarez.mx"
+        "name": "Frutas Encurtidas Yuliveet",
+        "image": "/assets/images/hugofest/negocios/frutas encurtidas yuliveet.jpg"
       },
       {
-        "name": "Por Anunciar",
-        "image": "/assets/images/hugofest/negocios/logo_ejemplo.svg",
-        "link": "https://www.hugoalvarez.mx"
+        "name": "Indumentaria Istmeña",
+        "image": "/assets/images/hugofest/negocios/indumenetaria istmena.jpeg"
+      },
+      {
+        "name": "JAJIBRI",
+        "image": "/assets/images/hugofest/negocios/JAJIBRI.png"
+      },
+      {
+        "name": "Kariel Miel de Agave",
+        "image": "/assets/images/hugofest/negocios/kariel miel de agave.jpg"
+      },
+      {
+        "name": "La Picosita Snack Bar",
+        "image": "/assets/images/hugofest/negocios/la picosita snack bar.jpeg"
+      },
+      {
+        "name": "La Plebada",
+        "image": "/assets/images/hugofest/negocios/la plebada.jpeg"
+      },
+      {
+        "name": "Lala Nadxieelii",
+        "image": "/assets/images/hugofest/negocios/lala nadxieelii.jpeg"
+      },
+      {
+        "name": "Liah Accesorios",
+        "image": "/assets/images/hugofest/negocios/LIAH ACCESORIOS.jpeg"
+      },
+      {
+        "name": "Maoma",
+        "image": "/assets/images/hugofest/negocios/MAOMA.jpeg"
+      },
+      {
+        "name": "Marina Fuentes",
+        "image": "/assets/images/hugofest/negocios/MARINA FUENTES.png"
+      },
+      {
+        "name": "Sazón de Isabel",
+        "image": "/assets/images/hugofest/negocios/sazon de isabel.jpg"
+      },
+      {
+        "name": "Skin Glow",
+        "image": "/assets/images/hugofest/negocios/skin glow.jpeg"
+      },
+      {
+        "name": "Sneakers Joysc",
+        "image": "/assets/images/hugofest/negocios/sneakers joysc.jpg"
+      },
+      {
+        "name": "Tablitas Ruiz",
+        "image": "/assets/images/hugofest/negocios/tablitas ruiz.jpeg"
+      },
+      {
+        "name": "The Snack House",
+        "image": "/assets/images/hugofest/negocios/the snack house.jpeg"
       }
     ]
   }
