@@ -161,7 +161,15 @@ import content from '../../data/hugofest.json';
 
     /* Rifa - Centrado perfecto en Desktop y Mobile */
     .rifa-wrapper { display: flex; justify-content: center; width: 100%; }
-    .rifa-imagen { max-width: 600px; height: auto; border-radius: 12px; margin: 20px 0; transition: transform 0.3s ease; display: block; }
+    .rifa-imagen { 
+      width: 95%;         /* En móvil tomará el 95% del ancho del contenedor/pantalla */
+      max-width: 500px;   /* En escritorio NO pasará de este tamaño */
+      height: auto;       /* Mantiene la proporción casi cuadrada intacta */
+      border-radius: 12px; 
+      margin: 20px auto;  /* El 'auto' a los lados asegura que esté centrado */
+      transition: transform 0.3s ease; 
+      display: block; 
+    }
     .rifa-imagen:hover { transform: scale(1.02); }
 
     /* Carrusel de Texto (Marquee) */
