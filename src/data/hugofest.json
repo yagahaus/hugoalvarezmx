@@ -1,10 +1,10 @@
 {
   "ctaBlock": {
-    "title": "¡Regístrate y participa en la rifa!",
-    "image": "/assets/images/hugofest/rifa_hugofest.png",
-    "imageAlt": "Participa en la Rifa",
+    "title": "¡Regístrate, obtén tu BUEN TICKET y participa!",
+    "image": "/assets/images/hugofest/BUENTICKET_hugofest.png",
+    "imageAlt": "¡Quiero mi BUEN TICKET!",
     "link": "https://app.hugoalvarez.mx/hugofest2026",
-    "buttonText": "Quiero mi boleto y participar en la rifa"
+    "buttonText": "¡Quiero mi BUEN TICKET!"
   },
   "programaBlock": {
     "title": "Invitados Especiales",
