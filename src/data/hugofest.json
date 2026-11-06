@@ -4,7 +4,7 @@
     "image": "/assets/images/hugofest/buenticket.png",
     "imageAlt": "¡Quiero mi BUEN TICKET!",
     "link": "https://app.hugoalvarez.mx/hugofest2026",
-    "buttonText": "¡Quiero mi BUEN TICKET!"
+    "buttonText": "Quiero mi BUEN TICKET"
   },
   "programaBlock": {
     "title": "Invitados Especiales",
@@ -15,7 +15,7 @@
         "subtitle": "Charla Motivacional",
         "description": "Comunicador, actor y conferencista internacional mexicano con más de 30 años de trayectoria en los medios de comunicación y el desarrollo humano. Mario viene a darte un taller de cómo superar y emprender frente los obstáculos de la vida. Acompáñanos a descubrir estrategias prácticas y anécdotas inspiradoras para llevar tu negocio y tu mentalidad al siguiente nivel.",
         "image": "/assets/images/hugofest/mariocarballido.jpg",
-        "buttonText": "Obtener boleto gratis",
+        "buttonText": "Quiero mi BUEN TICKET",
         "link": "https://app.hugoalvarez.mx/hugofest2026"
       },
       {
@@ -24,7 +24,7 @@
         "subtitle": "El romántico del Istmo",
         "description": "Roberto Carlos es un virtuoso trovador y cantante de Salina Cruz, Oaxaca, que nos deleitará con los temas más románticos para compartir en familia y con el ser amado durante este magno evento. No te lo puedes perder.",
         "image": "/assets/images/hugofest/robertocarlos.jpg",
-        "buttonText": "Obtener boleto gratis",
+        "buttonText": "Quiero mi BUEN TICKET",
         "link": "https://app.hugoalvarez.mx/hugofest2026"
       }
     ]
