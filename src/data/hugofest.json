@@ -100,6 +100,34 @@
       {
         "name": "The Snack House",
         "image": "/assets/images/hugofest/negocios/the snack house.jpeg"
+      },
+      {
+        "name": "Mi Chelita Micheladas y Mariscos",
+        "image": "/assets/images/hugofest/negocios/mi chelita-micheladas y mariscos.jpeg"
+      },
+      {
+        "name": "Moda Regional Rosalba",
+        "image": "/assets/images/hugofest/negocios/ModaRegional-Rosalba.jpg"
+      },
+      {
+        "name": "Novedades Melendez",
+        "image": "/assets/images/hugofest/negocios/novedades melendez.jpg"
+      },
+      {
+        "name": "Creaciones May",
+        "image": "/assets/images/hugofest/negocios/creaciones-may.jpeg"
+      },
+      {
+        "name": "Don Barbón Barra Móvil",
+        "image": "/assets/images/hugofest/negocios/don-barbon-barra-movil.jpeg"
+      },
+      {
+        "name": "3D Monse Impresiones 3D",
+        "image": "/assets/images/hugofest/negocios/3d-monse-impresiones-3d.jpeg"
+      },
+      {
+        "name": "Tamales D Norma",
+        "image": "/assets/images/hugofest/negocios/tamales-d-norma.jpeg"
       }
     ]
   }
