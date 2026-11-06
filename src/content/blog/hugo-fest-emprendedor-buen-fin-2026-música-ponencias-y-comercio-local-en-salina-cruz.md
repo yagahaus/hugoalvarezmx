@@ -3,7 +3,7 @@ title: Hugo Fest Emprendedor "Buen Fin 2026" - Este 14/Nov
 description: Asiste al Hugo Fest Emprendedor 2026 en Salina Cruz. Disfruta de la conferencia magistral de Mario Carballido, trova en vivo, grandes sorpresas y participa en la rifa de una bicimoto eléctrica.
 author: Hugo Álvarez
 category: HugoFest
-pubDate: 2026-10-28
+pubDate: 2026-11-06
 heroImage: /assets/images/hugofestlogo.jpg
 ---
 
@@ -23,12 +23,12 @@ Para esta edición, hemos preparado un cartel pensado para motivar y consentir a
 
 El corazón de este festival son las manos trabajadoras de nuestra región. En la plataforma oficial del evento iremos actualizando el listado completo de los **emprendedores, marcas y negocios locales** que se darán cita para ofrecer sus productos, fomentando el consumo local y el crecimiento de nuestra economía. 
 
-### ¡Regístrate, asiste y participa en la gran rifa!
+### ¡Obtén tu BUEN TICKET y participa por productos gratis!
 
-Queremos premiar tu asistencia. Al registrarte y asegurar tu lugar, estarás participando automáticamente en la **gran rifa de una bicimoto eléctrica**. Es el pretexto perfecto para disfrutar de las mejores ofertas del Buen Fin, apoyar el comercio de nuestra tierra y pasar un momento inolvidable.
+Queremos que disfrutes al máximo las promociones del Buen Fin apoyando a nuestra gente. Al registrarte sin costo en nuestra plataforma, obtendrás tu **BUEN TICKET**, un código digital exclusivo. Durante el evento, presenta tu código cada vez que realices una compra en los stands participantes. Al hacerlo, estarás participando por productos gratis, descuentos y recompensas (cortesía de nuestros emprendedores participantes). **¡Entre más apoyes al comercio local, más oportunidades tienes de llevarte sorpresas!**
 
-[![](/assets/images/blog/rifa_hugofest.png "¡Registrate y participa para ganar una bicimoto eléctrica!")](https://app.hugoalvarez.mx/hugofest2026)
+👉 Consulta todos los detalles, el programa completo y obtén tu **BUEN TICKET** visitando la página oficial del evento en: [https://hugoalvarez.mx/hugofest](https://hugoalvarez.mx/hugofest)
 
-👉 **Consulta todos los detalles, el programa completo y aparta tu lugar visitando la landing page oficial del evento en:** [https://www.hugoalvarez.mx/hugofest](https://www.hugoalvarez.mx/hugofest)
+[![](/assets/images/HUGOFEST2026.jpg "¡HugoFest 2026!")](/hugofest)
 
-¡Los esperamos a todos para demostrar que cuando Salina Cruz se une y trabaja con amor, grandes cosas suceden!
+¡Los esperamos a todos para demostrar que cuando Salina Cruz se une y trabaja con amor, grandes cosas suceden!
