@@ -159,18 +159,60 @@ import content from '../../data/hugofest.json';
     .seccion { padding: 80px 20px; display: flex; flex-direction: column; align-items: center; }
     .contenedor { max-width: 1000px; width: 100%; margin: 0 auto; text-align: center; }
 
-    /* Rifa - Centrado perfecto en Desktop y Mobile */
-    .rifa-wrapper { display: flex; justify-content: center; width: 100%; }
-    .rifa-imagen { 
-      width: 95%;         /* En móvil tomará el 95% del ancho del contenedor/pantalla */
-      max-width: 500px;   /* En escritorio NO pasará de este tamaño */
-      height: auto;       /* Mantiene la proporción casi cuadrada intacta */
+    /* BUEN TICKET - Centrado perfecto */
+    .buenticket-wrapper { display: flex; justify-content: center; width: 100%; }
+    .buenticket-imagen { 
+      width: 95%;         
+      max-width: 500px;   
+      height: auto;       
       border-radius: 12px; 
-      margin: 20px auto;  /* El 'auto' a los lados asegura que esté centrado */
+      margin: 20px auto;  
       transition: transform 0.3s ease; 
       display: block; 
     }
-    .rifa-imagen:hover { transform: scale(1.02); }
+    .buenticket-imagen:hover { transform: scale(1.02); }
+
+    /* BUEN TICKET - DISCLAIMER (CÓMO FUNCIONA) */
+    .disclaimer-container {
+      background: var(--default-color-similar);
+      border-radius: var(--radius-card);
+      padding: 40px;
+      margin-top: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    .disclaimer-container h3 {
+      font-size: 2rem;
+      color: var(--color-acento2);
+      margin-bottom: 15px;
+    }
+    .disclaimer-desc {
+      color: #555;
+      font-size: 1rem;
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      line-height: 1.7;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    .step-svg {
+      box-shadow: 0 5px 15px rgba(255, 128, 0, 0.3);
+      border-radius: 50%;
+    }
+    .step-item p {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--color-acento2);
+    }
 
     /* Carrusel de Texto (Marquee) */
     .marquee-wrapper { width: 100%; overflow: hidden; padding: 40px 0; display: flex; flex-direction: column; gap: 20px; }
@@ -201,11 +243,54 @@ import content from '../../data/hugofest.json';
 
     /* Emprendimientos */
     .emprendimientos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 40px; }
-    .emprendimiento-item { text-align: center; }
-    .emprendimiento-item a { text-decoration: none; display: inline-block; }
-    .emprendimiento-item img { width: 100px; height: 100px; border-radius: 10%; object-fit: cover; margin-bottom: 15px; transition: transform 0.3s ease; background: #eaeaea; padding: 15px; display: block; margin-left: auto; margin-right: auto; }
+    .emprendimiento-item { text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; }
+    .emprendimiento-item img { width: 100px; height: 100px; border-radius: 10%; object-fit: cover; margin-bottom: 15px; transition: transform 0.3s ease; background: #eaeaea; padding: 15px; display: block; }
     .emprendimiento-item:hover img { transform: scale(1.1) translateY(-10px); box-shadow: 0 15px 20px rgba(255,128,0,0.2); }
-    .emprendimiento-item p { font-weight: 700; font-size: 0.9rem; color: var(--color-acento2); }
+    .emprendimiento-item p { font-weight: 700; font-size: 0.9rem; color: var(--color-acento2); transition: color 0.3s; }
+    .emprendimiento-item:hover p { color: var(--color-acento); }
+
+    /* ==========================================
+       ESTILOS DEL MODAL (POP-IN)
+       ========================================== */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.85);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 2000; opacity: 0; visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+    .modal-overlay.active { opacity: 1; visibility: visible; }
+    
+    .modal-content {
+      position: relative; background: #ffffff; padding: 30px;
+      border-radius: var(--radius-card); text-align: center;
+      max-width: 90%; max-height: 90vh;
+      transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex; flex-direction: column; align-items: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+    .modal-overlay.active .modal-content { transform: scale(1); }
+    
+    .modal-content img {
+      max-width: 100%; max-height: 60vh; border-radius: 12px;
+      object-fit: contain; margin-bottom: 20px;
+    }
+    .modal-content p {
+      font-family: var(--font-main); font-weight: 800; margin: 0;
+      font-size: 1.8rem; color: var(--color-acento2);
+    }
+    
+    .modal-close {
+      position: absolute; top: -15px; right: -15px;
+      background: var(--color-acento); color: #fff;
+      width: 45px; height: 45px; border-radius: 50%;
+      font-size: 1.8rem; font-weight: bold; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3); transition: background 0.3s, transform 0.3s;
+      border: 3px solid #fff;
+    }
+    .modal-close:hover { background: #e67300; transform: scale(1.1); }
 
     /* Footer */
     .footer { padding: 60px 20px; text-align: center; }
@@ -226,6 +311,8 @@ import content from '../../data/hugofest.json';
       .marquee span { font-size: 1.5rem; }
       .countdown-timer { font-size: 1.5rem; }
       .hero-info-wrapper { flex-direction: column; }
+      .steps-grid { grid-template-columns: 1fr; gap: 25px; }
+      .disclaimer-container { padding: 30px 20px; }
     }
   </style>
 </head>
@@ -303,22 +390,50 @@ import content from '../../data/hugofest.json';
     </div>
   </section>
   
-  <!-- SECCIÓN: REGISTRO Y RIFA (DINÁMICO DESDE JSON) -->
+  <!-- SECCIÓN: REGISTRO Y BUEN TICKET -->
   <section class="seccion fondo-default">
     <div class="contenedor">
       <h2 style="font-size: 2.5rem; margin-bottom: 20px;">{content.ctaBlock.title}</h2>
-      <div class="rifa-wrapper">
+      
+      <div class="buenticket-wrapper">
         <a href={content.ctaBlock.link}>
-          <img src={content.ctaBlock.image} alt={content.ctaBlock.imageAlt} class="rifa-imagen">
+          <img src={content.ctaBlock.image} alt={content.ctaBlock.imageAlt} class="buenticket-imagen">
         </a>
       </div>
+      
       <a href={content.ctaBlock.link} class="btn-principal" style="margin-top: 20px;">
         {content.ctaBlock.buttonText}
       </a>
+
+      <!-- DISCLAIMER / ¿CÓMO FUNCIONA? -->
+      <div class="disclaimer-container">
+        <h3>{content.ctaBlock.howItWorksTitle}</h3>
+        <p class="disclaimer-desc">{content.ctaBlock.howItWorksDescription}</p>
+        
+        <div class="steps-grid">
+          {content.ctaBlock.steps.map((step) => (
+            <div class="step-item">
+              <!-- SVG dinámico para cada número de paso usando los degradados de la marca -->
+              <svg viewBox="0 0 64 64" width="60" height="60" xmlns="http://www.w3.org/2000/svg" class="step-svg">
+                <defs>
+                  <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#FF8000" />
+                    <stop offset="100%" stop-color="#ffb100" />
+                  </linearGradient>
+                </defs>
+                <circle cx="32" cy="32" r="32" fill="url(#orangeGrad)"/>
+                <text x="32" y="44" fill="#ffffff" font-family="'Montserrat', sans-serif" font-weight="800" font-size="34" text-anchor="middle">{step.number}</text>
+              </svg>
+              <p>{step.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      
     </div>
   </section>
 
-  <!-- SECCIÓN: PROGRAMA DE ACTIVIDADES (DINÁMICO DESDE JSON) -->
+  <!-- SECCIÓN: PROGRAMA DE ACTIVIDADES -->
   <section class="seccion fondo-default" style="background-color: var(--default-color-similar);">
     <div class="contenedor">
       <h2 style="font-size: 2.5rem; margin-bottom: 40px; color: var(--color-acento2);">{content.programaBlock.title}</h2>
@@ -339,7 +454,7 @@ import content from '../../data/hugofest.json';
     </div>
   </section>
 
-  <!-- SECCIÓN: EMPRENDIMIENTOS (DINÁMICO DESDE JSON) -->
+  <!-- SECCIÓN: EMPRENDIMIENTOS -->
   <section class="seccion fondo-default">
     <div class="contenedor">
       <h2 style="font-size: 2.2rem; margin-bottom: 10px;">{content.logosBlock.title}</h2>
@@ -347,11 +462,9 @@ import content from '../../data/hugofest.json';
       
       <div class="emprendimientos-grid">
         {content.logosBlock.emprendimientos.map((item) => (
-          <div class="emprendimiento-item">
-            <a href={item.link} target="_blank">
-              <img src={item.image} alt={item.name}>
-              <p>{item.name}</p>
-            </a>
+          <div class="emprendimiento-item" data-image={item.image} data-name={item.name}>
+            <img src={item.image} alt={item.name}>
+            <p>{item.name}</p>
           </div>
         ))}
       </div>
@@ -369,6 +482,15 @@ import content from '../../data/hugofest.json';
       <span>CONFERENCIAS Y MÁS</span>
     </div>
   </section>
+
+  <!-- MODAL PARA VISUALIZAR LOGOS -->
+  <div id="logoModal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-close">&times;</div>
+      <img id="modalImage" src="" alt="">
+      <p id="modalName"></p>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer class="footer fondo-acento2">
@@ -397,11 +519,10 @@ import content from '../../data/hugofest.json';
     <img src="assets/images/hugofest/logo_hugo.svg" alt="Hugo Álvarez" class="logo-footer">
   </footer>
 
-  <!-- SCRIPT DE CUENTA REGRESIVA -->
+  <!-- SCRIPTS -->
   <script>
-    // Fecha del evento: 14 de Noviembre de 2026 a las 11:00 AM
+    // --- LÓGICA DE LA CUENTA REGRESIVA ---
     const countDownDate = new Date("Nov 14, 2026 11:00:00").getTime();
-
     const x = setInterval(function() {
       const now = new Date().getTime();
       const distance = countDownDate - now;
@@ -419,6 +540,52 @@ import content from '../../data/hugofest.json';
         document.getElementById("countdown").innerHTML = "¡EL EVENTO HA COMENZADO!";
       }
     }, 1000);
+
+
+    // --- LÓGICA DEL MODAL DE EMPRENDIMIENTOS ---
+    const emprendimientoItems = document.querySelectorAll('.emprendimiento-item');
+    const modal = document.getElementById('logoModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalName = document.getElementById('modalName');
+    const btnCerrar = document.querySelector('.modal-close');
+
+    // Abrir modal al hacer clic en un emprendimiento
+    emprendimientoItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const imgSrc = item.getAttribute('data-image');
+        const name = item.getAttribute('data-name');
+        
+        modalImg.src = imgSrc;
+        modalName.textContent = name;
+        modal.classList.add('active');
+        
+        // Bloqueamos el scroll del body mientras el modal está abierto
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Función para cerrar el modal
+    const cerrarModal = () => {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    };
+
+    // Cerrar al hacer clic en la X
+    btnCerrar.addEventListener('click', cerrarModal);
+
+    // Cerrar al hacer clic en el fondo oscuro
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        cerrarModal();
+      }
+    });
+
+    // Cerrar con la tecla Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        cerrarModal();
+      }
+    });
   </script>
 
 </body>

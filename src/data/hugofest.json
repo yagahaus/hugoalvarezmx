@@ -4,7 +4,23 @@
     "image": "/assets/images/hugofest/buenticket.png",
     "imageAlt": "¡Quiero mi BUEN TICKET!",
     "link": "https://app.hugoalvarez.mx/hugofest2026",
-    "buttonText": "Quiero mi BUEN TICKET"
+    "buttonText": "Quiero mi BUEN TICKET",
+    "howItWorksTitle": "¿Cómo funciona?",
+    "howItWorksDescription": "Al obtener tu BUEN TICKET, se te asignará un código único. Durante el HUGOFEST, presenta este código al realizar cualquier compra en los stands participantes. El emprendedor registrará tu código en su lista de clientes del día. Con cada compra en distintos stands, participas para ser acreedor de los obsequios, promociones y recompensas que cada emprendedor ofrece como cortesía. Durante el evento, los emprendedores realizarán sus propias dinámicas para entregar estas recompensas a sus compradores registrados.",
+    "steps": [
+      {
+        "number": "1",
+        "text": "Regístrate y obtén tu código único y pase QR en segundos."
+      },
+      {
+        "number": "2",
+        "text": "Presenta tu código al comprar en los stands participantes."
+      },
+      {
+        "number": "3",
+        "text": "Participa por recompensas y promociones de cada emprendedor."
+      }
+    ]
   },
   "programaBlock": {
     "title": "Invitados Especiales",
