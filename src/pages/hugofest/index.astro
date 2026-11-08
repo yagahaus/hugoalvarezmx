@@ -8,6 +8,13 @@ import content from '../../data/hugofest.json';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hugo Fest Emprendedor - Buen Fin 2026</title>
+  
+  <!-- Open Graph / Redes Sociales -->
+  <meta property="og:title" content="Hugo Fest Emprendedor - Buen Fin 2026">
+  <meta property="og:description" content="El mejor evento de comercio local, bazar, música en vivo y conferencias en Salina Cruz. ¡Obtén tu Buen Ticket gratis!">
+  <meta property="og:image" content="/assets/images/hugofestog.jpg">
+  <meta property="og:type" content="website">
+  
   <link rel="icon" type="image/png" href="assets/images/hugofest/favicon.ico">
   
   <style>
@@ -140,18 +147,27 @@ import content from '../../data/hugofest.json';
     .evento-info-item strong { display: block; font-weight: 700; }
     .evento-info-item span { color: #555; font-size: 0.85rem; }
 
-    /* Botón Google Maps con Degradado Horizontal */
+    /* Botón Google Maps (100% de ancho con animación de amplitud) */
     .btn-mapa {
-      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;      
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;      
       background: linear-gradient(to right, #FF8000, #ffb100);
       color: #ffffff;
-      font-family: var(--font-mono); font-weight: 700; font-size: 0.8rem;
-      text-transform: uppercase; text-decoration: none; padding: 10px 18px;
-      border-radius: var(--radius-capsule); transition: transform 0.3s ease; margin-top: 5px;
-      box-shadow: 0 2px 10px rgba(255, 128, 0, 0.2);
+      font-family: var(--font-mono); font-weight: 700; font-size: 0.85rem;
+      text-transform: uppercase; text-decoration: none; padding: 12px 20px;
+      width: 100%;
+      border-radius: var(--radius-capsule); 
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease; 
+      margin-top: 8px;
+      box-shadow: 0 4px 15px rgba(255, 128, 0, 0.3);
     }
-    .btn-mapa:hover { transform: scale(1.05); }
-    .btn-mapa svg { width: 16px; height: 16px; color: currentColor; }
+    .btn-mapa:hover { 
+      transform: scale(1.03); 
+      box-shadow: 0 6px 20px rgba(255, 128, 0, 0.5); 
+    }
+    .btn-mapa:active {
+      transform: scale(0.98);
+    }
+    .btn-mapa svg { width: 18px; height: 18px; color: currentColor; }
     
     @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } from { opacity: 0; transform: translateY(20px); } }
 
@@ -383,7 +399,7 @@ src="https://www.facebook.com/tr?id=1572860151528133&ev=PageView&noscript=1"
           </div>
         </div>
 
-        <!-- Botón Google Maps -->
+        <!-- Botón Google Maps (100% de ancho con animación de amplitud) -->
         <div>
           <a href="https://maps.app.goo.gl/yt6QTGpniowCsNkP9" target="_blank" class="btn-mapa">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
