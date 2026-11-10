@@ -50,16 +50,52 @@
     "description": "Apoya el talento y el comercio local de Salina Cruz.",
     "emprendimientos": [
       {
-        "name": "VC Skin",
-        "image": "/assets/images/hugofest/negocios/vc skin.jpeg"
+        "name": "3D Monse Impresiones 3D",
+        "image": "/assets/images/hugofest/negocios/3d-monse-impresiones-3d.jpeg"
+      },
+      {
+        "name": "Artefacto Publicidad",
+        "image": "/assets/images/hugofest/negocios/artefacto-publicidad.jpeg"
+      },
+      {
+        "name": "Bolsas Artesanales y Miel de Abeja",
+        "image": "/assets/images/hugofest/negocios/bolsas artesanales y miel de abeja.jpg"
+      },
+      {
+        "name": "Bombonísima Arte Comestible",
+        "image": "/assets/images/hugofest/negocios/Bombonisima-arte comestible.jpeg"
+      },
+      {
+        "name": "Burunni Estudio Creativo",
+        "image": "/assets/images/hugofest/negocios/burunni estudio creativo.jpeg"
+      },
+      {
+        "name": "Chemisette Catálogo",
+        "image": "/assets/images/hugofest/negocios/chemisette catalogo.jpeg"
+      },
+      {
+        "name": "Concepción Bautista",
+        "image": "/assets/images/hugofest/negocios/Concepcion-Bautista.jpg"
       },
       {
         "name": "Creaciones Magy",
         "image": "/assets/images/hugofest/negocios/creaciones magy.jpeg"
       },
       {
+        "name": "Creaciones May",
+        "image": "/assets/images/hugofest/negocios/creaciones-may.jpeg"
+      },
+      {
+        "name": "Don Barbón Barra Móvil",
+        "image": "/assets/images/hugofest/negocios/don-barbon-barra-movil.jpeg"
+      },
+      {
         "name": "Frutas Encurtidas Yuliveet",
         "image": "/assets/images/hugofest/negocios/frutas encurtidas yuliveet.jpg"
+      },
+      {
+        "name": "Herrera Seminuevos",
+        "image": "/assets/images/hugofest/negocios/herreraseminuevos.jpg"
       },
       {
         "name": "Indumentaria Istmeña",
@@ -74,6 +110,10 @@
         "image": "/assets/images/hugofest/negocios/kariel miel de agave.jpg"
       },
       {
+        "name": "La Galleta Encantadora",
+        "image": "/assets/images/hugofest/negocios/la galleta encantadora.jpeg"
+      },
+      {
         "name": "La Picosita Snack Bar",
         "image": "/assets/images/hugofest/negocios/la picosita snack bar.jpeg"
       },
@@ -82,12 +122,24 @@
         "image": "/assets/images/hugofest/negocios/la plebada.jpeg"
       },
       {
+        "name": "Laboratorio San Jerónimo",
+        "image": "/assets/images/hugofest/negocios/Laboratorio San Jerónimo.jpeg"
+      },
+      {
         "name": "Lala Nadxieelii",
         "image": "/assets/images/hugofest/negocios/lala nadxieelii.jpeg"
       },
       {
+        "name": "Las Fresas de la Parroquia",
+        "image": "/assets/images/hugofest/negocios/las fresas de la parroquia.jpeg"
+      },
+      {
         "name": "Liah Accesorios",
         "image": "/assets/images/hugofest/negocios/LIAH ACCESORIOS.jpeg"
+      },
+      {
+        "name": "Liva Herbolaria Boutique",
+        "image": "/assets/images/hugofest/negocios/liva herbolaria boutique.jpeg"
       },
       {
         "name": "Maoma",
@@ -98,8 +150,48 @@
         "image": "/assets/images/hugofest/negocios/MARINA FUENTES.png"
       },
       {
+        "name": "Mi Chelita Micheladas y Mariscos",
+        "image": "/assets/images/hugofest/negocios/mi chelita-micheladas y mariscos.jpeg"
+      },
+      {
+        "name": "Miga Mía",
+        "image": "/assets/images/hugofest/negocios/miga mia.jpeg"
+      },
+      {
+        "name": "Moda Regional Rosalba",
+        "image": "/assets/images/hugofest/negocios/ModaRegional-Rosalba.jpg"
+      },
+      {
+        "name": "Novedades Melendez",
+        "image": "/assets/images/hugofest/negocios/novedades melendez.jpg"
+      },
+      {
+        "name": "Only Girls Shop",
+        "image": "/assets/images/hugofest/negocios/only girls Shop.jpeg"
+      },
+      {
+        "name": "Panadería y Repostería Magaly",
+        "image": "/assets/images/hugofest/negocios/PanaderiayReposteria-Magaly.jpg"
+      },
+      {
+        "name": "Picolinos Ropa de Cama y Blancos",
+        "image": "/assets/images/hugofest/negocios/picolinos-ropa de cama y blancos.jpeg"
+      },
+      {
+        "name": "Pink Factory",
+        "image": "/assets/images/hugofest/negocios/pink factory.jpeg"
+      },
+      {
+        "name": "Romualda Pastelería de Diseño",
+        "image": "/assets/images/hugofest/negocios/romualda pasteleria de diseno.jpeg"
+      },
+      {
         "name": "Sazón de Isabel",
         "image": "/assets/images/hugofest/negocios/sazon de isabel.jpg"
+      },
+      {
+        "name": "Skandia Servicios Financieros",
+        "image": "/assets/images/hugofest/negocios/skandia servicios financieros.jpeg"
       },
       {
         "name": "Skin Glow",
@@ -114,88 +206,20 @@
         "image": "/assets/images/hugofest/negocios/tablitas ruiz.jpeg"
       },
       {
-        "name": "The Snack House",
-        "image": "/assets/images/hugofest/negocios/the snack house.jpeg"
-      },
-      {
-        "name": "Mi Chelita Micheladas y Mariscos",
-        "image": "/assets/images/hugofest/negocios/mi chelita-micheladas y mariscos.jpeg"
-      },
-      {
-        "name": "Moda Regional Rosalba",
-        "image": "/assets/images/hugofest/negocios/ModaRegional-Rosalba.jpg"
-      },
-      {
-        "name": "Novedades Melendez",
-        "image": "/assets/images/hugofest/negocios/novedades melendez.jpg"
-      },
-      {
-        "name": "Creaciones May",
-        "image": "/assets/images/hugofest/negocios/creaciones-may.jpeg"
-      },
-      {
-        "name": "Don Barbón Barra Móvil",
-        "image": "/assets/images/hugofest/negocios/don-barbon-barra-movil.jpeg"
-      },
-      {
-        "name": "3D Monse Impresiones 3D",
-        "image": "/assets/images/hugofest/negocios/3d-monse-impresiones-3d.jpeg"
-      },
-      {
         "name": "Tamales D Norma",
         "image": "/assets/images/hugofest/negocios/tamales-d-norma.jpeg"
       },
       {
-        "name": "Burunni Estudio Creativo",
-        "image": "/assets/images/hugofest/negocios/burunni estudio creativo.jpeg"
+        "name": "The Snack House",
+        "image": "/assets/images/hugofest/negocios/the snack house.jpeg"
       },
       {
-        "name": "Bolsas Artesanales y Miel de Abeja",
-        "image": "/assets/images/hugofest/negocios/bolsas artesanales y miel de abeja.jpg"
+        "name": "VC Skin",
+        "image": "/assets/images/hugofest/negocios/vc skin.jpeg"
       },
       {
-        "name": "Artefacto Publicidad",
-        "image": "/assets/images/hugofest/negocios/artefacto-publicidad.jpeg"
-      },
-      {
-        "name": "Liva Herbolaria Boutique",
-        "image": "/assets/images/hugofest/negocios/liva herbolaria boutique.jpeg"
-      },
-      {
-        "name": "Romualda Pastelería de Diseño",
-        "image": "/assets/images/hugofest/negocios/romualda pasteleria de diseno.jpeg"
-      },
-      {
-        "name": "Picolinos Ropa de Cama y Blancos",
-        "image": "/assets/images/hugofest/negocios/picolinos-ropa de cama y blancos.jpeg"
-      },
-      {
-        "name": "Chemisette Catálogo",
-        "image": "/assets/images/hugofest/negocios/chemisette catalogo.jpeg"
-      },
-      {
-        "name": "Miga Mía",
-        "image": "/assets/images/hugofest/negocios/miga mia.jpeg"
-      },
-      {
-        "name": "Las Fresas de la Parroquia",
-        "image": "/assets/images/hugofest/negocios/las fresas de la parroquia.jpeg"
-      },
-      {
-        "name": "La Galleta Encantadora",
-        "image": "/assets/images/hugofest/negocios/la galleta encantadora.jpeg"
-      },
-      {
-        "name": "Skandia Servicios Financieros",
-        "image": "/assets/images/hugofest/negocios/skandia servicios financieros.jpeg"
-      },
-      {
-        "name": "Only Girls Shop",
-        "image": "/assets/images/hugofest/negocios/only girls shop.jpeg"
-      },
-      {
-        "name": "Pink Factory",
-        "image": "/assets/images/hugofest/negocios/pink factory.jpeg"
+        "name": "Yos Shop Novedades",
+        "image": "/assets/images/hugofest/negocios/Yos Shop Novedades.jpeg"
       }
     ]
   }
