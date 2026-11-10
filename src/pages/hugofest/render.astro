@@ -1,0 +1,252 @@
+---
+import content from '../../data/hugofest.json';
+
+const emprendimientos = content.logosBlock?.emprendimientos || [];
+
+// Ordenar alfabéticamente
+const emprendimientosOrdenados = [...emprendimientos].sort((a, b) => 
+  a.name.localeCompare(b.name)
+);
+
+// Dividir en bloques de 8 emprendimientos por cada tarjeta/slide 1:1
+const ITEMS_PER_PAGE = 8;
+const pages = [];
+for (let i = 0; i < emprendimientosOrdenados.length; i += ITEMS_PER_PAGE) {
+  pages.push(emprendimientosOrdenados.slice(i, i + ITEMS_PER_PAGE));
+}
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Render - Slides Hugo Fest</title>
+  
+  <!-- html2canvas que probadamente sí ejecuta la descarga -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Mono:wght@700&display=swap');
+
+    :root {
+      --color-acento: #FF8000;
+      --font-main: 'Montserrat', sans-serif;
+      --font-mono: 'Space Mono', monospace;
+    }
+
+    body {
+      background-color: #1a1a1a;
+      color: #fff;
+      font-family: var(--font-main);
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .btn-action {
+      background: linear-gradient(to right, #FF8000, #ffb100);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      padding: 12px 25px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 128, 0, 0.4);
+      transition: transform 0.2s;
+    }
+    
+    .btn-action:hover {
+      transform: scale(1.05);
+    }
+
+    .page-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    /* Contenedor principal del Slide (Cuadrado exacto sin redondeos 1080x1080) */
+    .slide-container {
+      width: 1080px;
+      height: 1080px;
+      background: linear-gradient(to top, var(--color-acento) 0%, #ffcc00 100%);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 50px 60px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    /* Estilo de texto con glow blanco */
+    .glow-text {
+      color: #ffffff;
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      text-shadow: 0px 0px 15px rgba(255,255,255,0.8);
+    }
+
+    .slide-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .slide-title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .slide-counter {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 5px;
+    }
+
+    .emprendimientos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(4, 1fr);
+      gap: 30px;
+      flex-grow: 1;
+      height: 100%;
+    }
+
+    .emprendimiento-row {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      height: 100%;
+    }
+
+    .emprendimiento-logo {
+      width: 165px;
+      height: 165px; 
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      background-color: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .emprendimiento-name {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .slide-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-top: 30px;
+      width: 100%;
+    }
+
+    .footer-brand {
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .next-page-icon {
+      position: absolute;
+      right: 0;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .next-page-icon svg {
+      width: 70px;
+      height: 70px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 style="text-align: center;">Generador de Gráficos (1:1)</h1>
+
+  {pages.map((pageItems, index) => {
+    const isLastPage = index === pages.length - 1;
+    const slideId = `slide-${index + 1}`;
+    
+    return (
+      <div class="page-wrapper">
+        <div id={slideId} class="slide-container">
+          
+          <div class="slide-header">
+            <h2 class="slide-title glow-text">Emprendimientos Presentes</h2>
+            <div class="slide-counter glow-text">{index + 1} / {pages.length}</div>
+          </div>
+
+          <div class="emprendimientos-grid">
+            {pageItems.map((item) => (
+              <div class="emprendimiento-row">
+                <img src={item.image} alt={item.name} class="emprendimiento-logo" crossorigin="anonymous" />
+                <span class="emprendimiento-name glow-text">{item.name}</span>
+              </div>
+            ))}
+          </div>
+
+          <div class="slide-footer">
+            <span class="footer-brand glow-text">Hugo Fest • Buen Fin 2026</span>
+            
+            {!isLastPage && (
+              <div class="next-page-icon" title="Siguiente página">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </div>
+            )}
+          </div>
+
+        </div>
+
+        <button class="btn-action" onclick={`downloadSlide('${slideId}', ${index + 1})`}>
+          Descargar Slide {index + 1} (PNG)
+        </button>
+      </div>
+    );
+  })}
+
+  <script>
+    // Usamos la misma estructura de función global del archivo que sí funcionaba
+    window.downloadSlide = function(elementId, pageNum) {
+      const element = document.getElementById(elementId);
+      if (!element) return;
+
+      html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        allowTaint: true,
+        backgroundColor: null
+      }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = `HugoFest_Emprendedores_Slide_${pageNum}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      }).catch(err => {
+        console.error("Error al generar la imagen:", err);
+        alert("Hubo un detalle al generar la imagen. Intenta de nuevo.");
+      });
+    };
+  </script>
+
+</body>
+</html>
