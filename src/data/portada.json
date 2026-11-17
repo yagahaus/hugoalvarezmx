@@ -1,11 +1,11 @@
 {
-  "title": "¡El mejor plan del #BuenFin está en el HugoFest!",
-  "description": "Descubre la primera gran expo emprendedora de Salina Cruz. Bazar, comida, música en vivo y grandes invitados. Descarga tu BUEN TICKET sin costo y participa por productos gratis al apoyar el comercio local. ¡Hugo Álvarez te invita!",
-  "image": "/assets/images/hugo-hugofest-portada.jpg",
+  "title": "Hugo Álvarez trabaja con amor por Salina Cruz",
+  "description": "Conoce la historia de Hugo Álvarez Carvajal: de hijo de pescador y emprendedor en el mercado a ingeniero, líder empresarial y constructor de oportunidades para cientos de familias en la región.",
+  "image": "/assets/images/hugoalvarez-salinacruz.jpg",
   "botones": [
     {
-      "texto": "¡Explora el evento aquí!",
-      "url": "/hugofest"
+      "texto": "Leer más",
+      "url": "/manifiesto"
     }
   ]
 }
