@@ -1,10 +1,10 @@
 {
-  "title": "Buzón Ciudadano: ¿Qué es lo más urgente en tu colonia?",
-  "description": "Los mejores proyectos se construyen caminando y platicando con los vecinos. Cuéntame qué situación se vive en tu calle o comunidad. El diálogo es el primer paso para tener un mejor puerto.",
-  "image": "/assets/images/buzon.jpg",
+  "title": "Buzón Ciudadano: ¿Sabes lo que Salina Cruz necesita?",
+  "description": "Los mejores proyectos se construyen comunitariamente. Cuéntame qué situación se vive en tu calle o colonia. El diálogo es el primer paso para tener un mejor puerto.",
+  "image": "/assets/images/buzon-ciudadano.jpg",
   "botones": [
     {
-      "texto": "Enviar Mensaje",
+      "texto": "¡Quiero escucharte!",
       "url": "https://voz.hugoalvarez.mx/buzon"
     }
   ]
